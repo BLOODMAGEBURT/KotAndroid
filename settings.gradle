@@ -4,6 +4,7 @@ dependencyResolutionManagement {
         maven { url 'https://www.jitpack.io' }
         google()
         mavenCentral()
+        jcenter()
     }
 }
 rootProject.name = "KotAndroid"
