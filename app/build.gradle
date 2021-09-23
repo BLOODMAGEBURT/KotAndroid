@@ -52,5 +52,5 @@ dependencies {
     // Net
     implementation 'com.github.liangjingkanji:Net:3.0.20'
     // 支持自动下拉刷新和缺省页的(可选)
-//    implementation 'com.github.liangjingkanji:BRV:1.3.31'
+    implementation 'com.github.liangjingkanji:BRV:1.3.31'
 }
