@@ -1,6 +1,5 @@
 package com.xu.kotandroid.base
 
-import android.database.DatabaseUtils
 import android.os.Bundle
 import android.util.Log
 import android.view.View
