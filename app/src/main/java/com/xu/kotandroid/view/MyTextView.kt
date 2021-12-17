@@ -36,7 +36,7 @@ class MyTextView : AppCompatTextView {
 
         }
 
-        return false
+        return super.onTouchEvent(event)
     }
 
     override fun hasOnClickListeners(): Boolean {

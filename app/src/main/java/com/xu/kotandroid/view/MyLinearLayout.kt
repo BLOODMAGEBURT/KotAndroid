@@ -31,7 +31,6 @@ class MyLinearLayout : LinearLayout {
 
         }
 
-
         return super.dispatchTouchEvent(ev)
     }
 
@@ -43,7 +42,7 @@ class MyLinearLayout : LinearLayout {
 
         }
 
-        return true
+        return super.onInterceptTouchEvent(ev)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -51,7 +50,7 @@ class MyLinearLayout : LinearLayout {
             Log.e("xu", "Linear touch")
         }
 
-        return super.onTouchEvent(event)
+        return false
     }
 
 }
