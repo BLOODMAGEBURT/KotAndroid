@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.MarqueeActivity">
+
+        <com.gongwen.marqueen.SimpleMarqueeView
+            android:id="@+id/simpleMarqueeView"
+            android:layout_width="0pt"
+            android:layout_height="40dp"
+            android:background="@color/black"
+            android:flipInterval="2500"
+            android:inAnimation="@anim/in_right"
+            android:outAnimation="@anim/out_left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:marqueeAnimDuration="2000"
+            app:smvTextColor="@color/white"
+            app:smvTextEllipsize="end"
+            app:smvTextGravity="center_vertical"
+            app:smvTextSingleLine="true"
+            app:smvTextSize="15sp" />
+
+
+        <com.xu.kotandroid.view.MarqueeView
+            android:id="@+id/mv4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/simpleMarqueeView"
+            app:marqueeview_repet_type="repet_continuous"
+            app:marqueeview_text_color="@color/white"
+            app:marqueeview_text_size="15"
+            app:marqueeview_text_speed="2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
