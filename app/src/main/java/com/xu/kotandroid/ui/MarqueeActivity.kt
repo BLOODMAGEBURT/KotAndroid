@@ -32,9 +32,7 @@ class MarqueeActivity : AppCompatActivity() {
         }
 
 
-
         binding.mv4.setContent("1.《赋得古原草送别》")
-
 
 
     }

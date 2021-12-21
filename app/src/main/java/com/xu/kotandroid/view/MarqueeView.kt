@@ -11,8 +11,8 @@ import android.graphics.Rect
 import com.xu.kotandroid.R
 import android.text.TextUtils
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
+import kotlin.math.abs
 
 /** iop
  * u
@@ -31,8 +31,8 @@ class MarqueeView @JvmOverloads constructor(
     private var textdistance //
             = 0
     private var textDistance1 = 10 //item间距，dp单位
-    private var black_count = "" //间距转化成空格距离
-    private var repetType = REPET_INTERVAL //滚动模式
+    private var blankCount = "" //间距转化成空格距离
+    private var repeatType = REPEAT_INTERVAL //滚动模式
     private var startLocationDistance = 1.0f //开始的位置选取，百分比来的，距离左边，0~1，0代表不间距，1的话代表，从右面，1/2代表中间。
     private var isClickStop = false //点击是否暂停
     private var isResetLocation = true //默认为truez
@@ -40,12 +40,12 @@ class MarqueeView @JvmOverloads constructor(
     private var contentWidth //内容的宽度
             = 0
     private var isRoll = false //是否继续滚动
-    private var oneBlack_width //空格的宽度
+    private var oneBlankWidth //空格的宽度
             = 0f
     private var paint //画笔
             : TextPaint? = null
     private var rect: Rect? = null
-    private var repetCount = 0 //
+    private var repeatCount = 0 //
     private var resetInit = true
     private var thread: Thread? = null
     private var content = ""
@@ -63,7 +63,7 @@ class MarqueeView @JvmOverloads constructor(
     }
 
     @SuppressLint("RestrictedApi")
-    private fun initattrs(attrs: AttributeSet?) {
+    private fun initAttrs(attrs: AttributeSet?) {
         val tta = context.obtainStyledAttributes(
             attrs,
             R.styleable.MarqueeView
@@ -96,9 +96,9 @@ class MarqueeView @JvmOverloads constructor(
             R.styleable.MarqueeView_marqueeview_text_startlocationdistance,
             startLocationDistance
         )
-        repetType = tta.getInt(
+        repeatType = tta.getInt(
             R.styleable.MarqueeView_marqueeview_repet_type,
-            repetType
+            repeatType
         )
         tta.recycle()
     }
@@ -114,7 +114,7 @@ class MarqueeView @JvmOverloads constructor(
         paint!!.textSize = dp2px(textSize).toFloat() //文字大小
     }
 
-    fun dp2px(dpValue: Float): Int {
+    private fun dp2px(dpValue: Float): Int {
         val scale = resources.displayMetrics.density
         return (dpValue * scale + 0.5f).toInt()
     }
@@ -132,27 +132,20 @@ class MarqueeView @JvmOverloads constructor(
             //            Log.e(TAG, "onMeasure: --- " + xLocation);
             resetInit = false
         }
-        when (repetType) {
-            REPET_ONCETIME -> if (contentWidth < -xLocation) {
+        when (repeatType) {
+            REPEAT_ONCE -> if (contentWidth < -xLocation) {
                 //也就是说文字已经到头了
 //                    此时停止线程就可以了
                 stopRoll()
             }
-            REPET_INTERVAL -> if (contentWidth <= -xLocation) {
+            REPEAT_INTERVAL -> if (contentWidth <= -xLocation) {
                 //也就是说文字已经到头了
                 xLocation = width.toFloat()
             }
-            REPET_CONTINUOUS -> if (xLocation < 0) {
-                val beAppend = (-xLocation / contentWidth).toInt()
-                Log.e(
-                    TAG,
-                    "onDraw: ---" + contentWidth + "--------" + -xLocation + "------" + beAppend
-                )
-                if (beAppend >= repetCount) {
-                    repetCount++
-                    //也就是说文字已经到头了
-//                    xLocation = speed//这个方法有问题，所以采取了追加字符串的 方法
-                    string += content
+            REPEAT_CONTINUOUS -> if (xLocation < 0) {
+
+                if (contentWidth < -xLocation) {
+                    xLocation = width * startLocationDistance
                 }
             }
             else ->                 //默认一次到头好了
@@ -171,13 +164,13 @@ class MarqueeView @JvmOverloads constructor(
     }
 
     fun setRepeatType(repeatType: Int) {
-        this.repetType = repeatType
+        this.repeatType = repeatType
         resetInit = true
         setContent(content)
     }
 
     override fun run() {
-        while (isRoll && !TextUtils.isEmpty(content)) {
+        while (isRoll && content.isNotEmpty()) {
             try {
                 Thread.sleep(10)
                 xLocation -= speed
@@ -229,16 +222,9 @@ class MarqueeView @JvmOverloads constructor(
      * @param isContinuable
      */
     private fun setContinuable(isContinuable: Int) {
-        repetType = isContinuable
+        repeatType = isContinuable
     }
-    //    /**
-    //     * 是否反向
-    //     *
-    //     * @param isResversable
-    //     */
-    //    private void setReversalble(boolean isResversable) {
-    //        this.isResversable = isResversable;
-    //    }
+
     /**
      * 设置文字间距  不过如果内容是List形式的，该方法不适用 ,list的数据源，必须在设置setContent之前调用此方法。
      *
@@ -249,16 +235,16 @@ class MarqueeView @JvmOverloads constructor(
 
         //设置之后就需要初始化了
 
-        val black = " "
-        oneBlack_width = blacktWidth //空格的宽度
-        var count = (dp2px(textDistance2.toFloat()) / oneBlack_width).toInt() //空格个数，有点粗略，有兴趣的朋友可以精细
+        val blank = " "
+        oneBlankWidth = blankWidth //空格的宽度
+        var count = (dp2px(textDistance2.toFloat()) / oneBlankWidth).toInt() //空格个数，有点粗略，有兴趣的朋友可以精细
         if (count == 0) {
             count = 1
         }
-        textdistance = (oneBlack_width * count).toInt()
-        black_count = ""
+        textdistance = (oneBlankWidth * count).toInt()
+        blankCount = ""
         for (i in 0..count) {
-            black_count += black //间隔字符串
+            blankCount += blank //间隔字符串
         }
         setContent(content) //设置间距以后要重新刷新内容距离，不过如果内容是List形式的，该方法不适用
     }
@@ -268,8 +254,8 @@ class MarqueeView @JvmOverloads constructor(
      *
      * @return
      */
-    private val blacktWidth: Float
-        private get() {
+    private val blankWidth: Float
+        get() {
             val text1 = "en en"
             val text2 = "enen"
             return getContentWidth(text1) - getContentWidth(text2)
@@ -295,9 +281,9 @@ class MarqueeView @JvmOverloads constructor(
      * @return
      */
     private val contentHeight: Float
-        private get() {
+        get() {
             val fontMetrics = paint!!.fontMetrics
-            return Math.abs(fontMetrics.bottom - fontMetrics.top) / 2
+            return abs(fontMetrics.bottom - fontMetrics.top) / 2
         }
 
     /**
@@ -344,7 +330,7 @@ class MarqueeView @JvmOverloads constructor(
         var temString = ""
         if (strings != null && strings.isNotEmpty()) {
             for (i in strings.indices) {
-                temString = temString + strings[i] + black_count
+                temString = temString + strings[i] + blankCount
             }
         }
         setContent(temString)
@@ -352,35 +338,30 @@ class MarqueeView @JvmOverloads constructor(
 
     /**
      * 设置滚动的条目内容  字符串形式的
-     *
-     * @parambt_control00
      */
     fun setContent(content2: String) {
-        var content2 = content2
-        if (TextUtils.isEmpty(content2)) {
+
+        if (content2.isEmpty()) {
             return
         }
         if (isResetLocation) { //控制重新设置文本内容的时候，是否初始化xLocation。
             xLocation = width * startLocationDistance
         }
-        if (!content2.endsWith(black_count)) {
-            content2 += black_count //避免没有后缀
-        }
-        content = content2
+
+        //避免没有后缀
+        content = if (!content2.endsWith(blankCount)) content2 + blankCount else content2
+
 
         //这里需要计算宽度啦，当然要根据模式来搞
-        if (repetType == REPET_CONTINUOUS) {
+        if (repeatType == REPEAT_CONTINUOUS) {
             //如果说是循环的话，则需要计算 文本的宽度 ，然后再根据屏幕宽度 ， 看能一个屏幕能盛得下几个文本
             contentWidth = (getContentWidth(content) + textdistance).toInt() //可以理解为一个单元内容的长度
             //从0 开始计算重复次数了， 否则到最后 会跨不过这个坎而消失。
-            repetCount = 0
-            val contentCount = width / contentWidth + 2
-            string = ""
-            for (i in 0..contentCount) {
-                string = string + content //根据重复次数去叠加。
-            }
+            repeatCount = 0
+            string = content
+
         } else {
-            if (xLocation < 0 && repetType == REPET_ONCETIME) {
+            if (xLocation < 0 && repeatType == REPEAT_ONCE) {
                 if (-xLocation > contentWidth) {
                     xLocation = width * startLocationDistance
                 }
@@ -403,19 +384,18 @@ class MarqueeView @JvmOverloads constructor(
     }
 
     fun appendContent(appendContent: String?) {
-//有兴趣的朋友可以自己完善，在现有的基础之上，静默追加新的 公告
+        //有兴趣的朋友可以自己完善，在现有的基础之上，静默追加新的 公告
     }
 
     companion object {
-        private const val TAG = "MarqueeView"
-        const val REPET_ONCETIME = 0 //一次结束
-        const val REPET_INTERVAL = 1 //一次结束以后，再继续第二次
-        const val REPET_CONTINUOUS = 2 //紧接着 滚动第二次
+        const val REPEAT_ONCE = 0 //一次结束
+        const val REPEAT_INTERVAL = 1 //一次结束以后，再继续第二次
+        const val REPEAT_CONTINUOUS = 2 //紧接着 滚动第二次
     }
 
     init {
-        initattrs(attrs)
+        initAttrs(attrs)
         initPaint()
-        initClick()
+//        initClick()
     }
 }
