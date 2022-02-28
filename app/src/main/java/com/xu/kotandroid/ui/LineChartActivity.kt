@@ -1,16 +1,22 @@
-package com.xu.kotandroid
+package com.xu.kotandroid.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.xu.kotandroid.R
+import com.xu.kotandroid.const.Const
 
-class MainActivity : AppCompatActivity() {
+class LineChartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_line_chart)
+
+
         initView()
     }
 
     private fun initView() {
+
+
 
     }
 }

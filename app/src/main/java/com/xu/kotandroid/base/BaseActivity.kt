@@ -37,4 +37,5 @@ abstract class BaseActivity<B : ViewDataBinding>(@LayoutRes layoutId: Int = 0) :
     abstract fun initData()
     abstract fun initView()
 
+
 }
