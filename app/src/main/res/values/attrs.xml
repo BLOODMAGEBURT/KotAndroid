@@ -4,24 +4,47 @@
     <declare-styleable name="MarqueeView">
 
         <attr name="marqueeview_repet_type" format="enum">
-            <enum name="repet_oncetime" value="0"/><!-- 播放一次 -->
-            <enum name="repet_interval" value="1"/>  <!--连续播放 循环结束再继续下次循环-->
-            <enum name="repet_continuous" value="2"/>  <!--连续播放 到末尾直接继续下次循环-->
+            <enum name="repet_oncetime" value="0" /><!-- 播放一次 -->
+            <enum name="repet_interval" value="1" />  <!--连续播放 循环结束再继续下次循环-->
+            <enum name="repet_continuous" value="2" />  <!--连续播放 到末尾直接继续下次循环-->
         </attr><!--循环模式-->
 
-        <attr name="marqueeview_text_distance" format="integer"/><!--每个item之间的距离-->
-        <attr name="marqueeview_text_startlocationdistance" format="float"/><!--开始的起始位置 按距离控件左边的百分比 0~1之间 -->
+        <attr name="marqueeview_text_distance" format="integer" /><!--每个item之间的距离-->
+        <attr name="marqueeview_text_startlocationdistance" format="float" /><!--开始的起始位置 按距离控件左边的百分比 0~1之间 -->
 
-        <attr name="marqueeview_text_speed" format="float"/><!--播放速度 也就是文字滚动速度-->
-        <attr name="marqueeview_text_color" format="color|reference"/><!-- 文字颜色 -->
-        <attr name="marqueeview_text_size" format="float"/><!-- 文字大小 -->
+        <attr name="marqueeview_text_speed" format="float" /><!--播放速度 也就是文字滚动速度-->
+        <attr name="marqueeview_text_color" format="color|reference" /><!-- 文字颜色 -->
+        <attr name="marqueeview_text_size" format="float" /><!-- 文字大小 -->
 
-        <attr name="marqueeview_isclickalbe_stop" format="boolean"/><!--是否点击暂停-->
-        <attr name="marqueeview_is_resetLocation" format="boolean"/><!--重新改变内容的时候 ， 是否初始化 位置，默认为true，改变-->
-
-
+        <attr name="marqueeview_isclickalbe_stop" format="boolean" /><!--是否点击暂停-->
+        <attr name="marqueeview_is_resetLocation" format="boolean" /><!--重新改变内容的时候 ， 是否初始化 位置，默认为true，改变-->
 
 
+    </declare-styleable>
+
+    <declare-styleable name="MiniFenShiView">
+        <!-- 涨颜色-->
+        <attr name="upColor" format="color" />
+        <!-- 跌颜色-->
+        <attr name="downColor" format="color" />
+        <!-- 不涨不跌颜色-->
+        <attr name="equalColor" format="color" />
+
+        <!-- 渐变底部颜色-->
+        <attr name="gradientBottomColor" format="color" />
+        <!-- 是否启用底部渐变-->
+        <attr name="enableGradientBottom" format="boolean" />
+
+        <!-- 实线宽-->
+        <attr name="strokeWidth" format="dimension" />
+        <!-- 价格区域透明度-->
+        <attr name="areaAlpha" format="integer" />
+        <!-- 虚线宽-->
+        <attr name="dottedLineWidth" format="dimension" />
+        <!-- 虚线间距-->
+        <attr name="dottedLineSpace" format="dimension" />
+        <!-- 始终显示虚线-->
+        <attr name="alwaysShowDottedLine" format="boolean" />
     </declare-styleable>
 
 
