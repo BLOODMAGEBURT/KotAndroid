@@ -1,5 +1,8 @@
 package com.xu.kotandroid
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
 
 /**
@@ -12,3 +15,11 @@ val Int.dp: Float
 
 val Int.px: Float
     get() = (this * Resources.getSystem().displayMetrics.density)
+
+
+internal inline fun <reified T : Activity> Context.openActivity(block: Intent.() -> Unit = {}) {
+    val intent = Intent(this, T::class.java)
+    if (this !is Activity) intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    intent.block()
+    startActivity(intent)
+}

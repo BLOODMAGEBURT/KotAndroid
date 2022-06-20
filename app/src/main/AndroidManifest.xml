@@ -11,10 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotAndroid">
         <activity
+            android:name=".ui.PanActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.MarqueeActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".ui.LineChartActivity"
             android:exported="false" />
@@ -32,7 +33,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 
