@@ -14,11 +14,23 @@
 
         <com.xu.kotandroid.view.PanView
             android:id="@+id/pan"
-            android:layout_width="150pt"
-            android:layout_height="150pt"
+            android:layout_width="200pt"
+            android:layout_height="200pt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+        <EditText
+            android:id="@+id/et"
+            android:layout_width="200pt"
+            android:layout_height="50pt"
+            android:layout_marginTop="50pt"
+            android:inputType="number|numberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pan" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -35,5 +35,45 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/hello" />
 
+
+        <TextView
+            android:id="@+id/pop"
+            android:layout_width="0pt"
+            android:layout_height="30pt"
+            android:layout_marginHorizontal="30pt"
+            android:layout_marginTop="10pt"
+            android:background="@color/teal_200"
+            android:gravity="center"
+            android:text="show pop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pan" />
+
+        <TextView
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="30pt"
+            android:layout_marginHorizontal="30pt"
+            android:layout_marginTop="10pt"
+            android:layout_marginEnd="16pt"
+            android:background="@color/teal_200"
+            android:gravity="center"
+            android:text="更多"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/toCalendar"
+            android:layout_width="0pt"
+            android:layout_height="30pt"
+            android:layout_marginHorizontal="30pt"
+            android:layout_marginTop="10pt"
+            android:background="@color/teal_200"
+            android:gravity="center"
+            android:text="toCalendar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pop" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

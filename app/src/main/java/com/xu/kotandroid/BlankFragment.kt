@@ -1,29 +1,19 @@
 package com.xu.kotandroid
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.xu.kotandroid.base.BaseFragment
+import com.xu.kotandroid.databinding.FragmentBlankBinding
+import com.xu.kotandroid.vm.CalendarViewModel
 
 
-class BlankFragment : Fragment() {
+class BlankFragment : BaseFragment<FragmentBlankBinding>(R.layout.fragment_blank) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    val parentVm by activityViewModels<CalendarViewModel>()
 
+    override fun initView() {
+        binding.add.setOnClickListener { parentVm.addEvent.value = 1 }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_blank, container, false)
-    }
-
-    companion object {
-
-        @JvmStatic
-        fun newInstance() = BlankFragment()
+    override fun initData() {
     }
 }
