@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat
 import com.xu.kotandroid.base.BaseActivity
 import com.xu.kotandroid.databinding.ActivityMainBinding
 import com.xu.kotandroid.ui.CalenderActivity
+import com.xu.kotandroid.ui.FingerActivity
 import com.xu.kotandroid.ui.MoreMenuPopupWindow
 import com.xu.kotandroid.ui.PanActivity
 import com.xu.kotandroid.util.CalendarEventsUtils
@@ -16,7 +17,6 @@ import java.util.*
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
-
 
 
     private fun initListener() {
@@ -32,8 +32,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
             openActivity<CalenderActivity>()
         }
-    }
 
+        binding.toFinger.setOnClickListener { openActivity<FingerActivity>() }
+    }
 
 
     override fun initData() {

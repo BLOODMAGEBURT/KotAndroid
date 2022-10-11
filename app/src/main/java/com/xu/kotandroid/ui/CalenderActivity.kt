@@ -8,6 +8,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayoutMediator
 import com.xu.kotandroid.BlankFragment
 import com.xu.kotandroid.R
@@ -16,6 +17,7 @@ import com.xu.kotandroid.base.BaseActivity
 import com.xu.kotandroid.databinding.ActivityCalenderBinding
 import com.xu.kotandroid.util.CalendarEventsUtils
 import com.xu.kotandroid.vm.CalendarViewModel
+import kotlinx.coroutines.launch
 import java.util.*
 
 class CalenderActivity : BaseActivity<ActivityCalenderBinding>(R.layout.activity_calender) {
@@ -117,18 +119,26 @@ class CalenderActivity : BaseActivity<ActivityCalenderBinding>(R.layout.activity
         val endTime: Calendar = Calendar.getInstance()
         endTime.set(2022, 9, 20, 15, 0)
         val endMillis: Long = endTime.timeInMillis
-        CalendarEventsUtils.addCalendarEvent(
-            this,
-            "火车票",
-            "别拖拖拉拉的，还有5分钟火车就开动了，抓紧～",
-            startMillis,
-            endMillis,
-            5
-        ).let {
 
-            Toast.makeText(this, if (it) "创建成功" else "创建失败", Toast.LENGTH_SHORT).show()
+        lifecycleScope.launch {
+            CalendarEventsUtils.addCalendarEvent(
+                this@CalenderActivity,
+                "火车票",
+                "别拖拖拉拉的，还有5分钟火车就开动了，抓紧～",
+                startMillis,
+                endMillis,
+                5
+            ).let {
 
+                Toast.makeText(
+                    this@CalenderActivity,
+                    if (it) "创建成功" else "创建失败",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            }
         }
+
 
     }
 }

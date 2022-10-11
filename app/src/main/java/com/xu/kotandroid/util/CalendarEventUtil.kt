@@ -80,7 +80,7 @@ object CalendarEventsUtils {
             CalendarContract.Calendars.CAL_ACCESS_OWNER
         )
         value.put(CalendarContract.Calendars.SYNC_EVENTS, 1)
-        value.put(CalendarContract.Calendars.CALENDAR_TIME_ZONE, timeZone.getID())
+        value.put(CalendarContract.Calendars.CALENDAR_TIME_ZONE, timeZone.id)
         value.put(CalendarContract.Calendars.OWNER_ACCOUNT, CALENDARS_ACCOUNT_NAME)
         value.put(CalendarContract.Calendars.CAN_ORGANIZER_RESPOND, 0)
         var calendarUri: Uri = Uri.parse(CALENDER_URL)

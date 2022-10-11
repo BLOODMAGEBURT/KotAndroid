@@ -10,6 +10,7 @@ import com.drake.net.okhttp.setDialogFactory
 import com.drake.net.okhttp.setLog
 import com.drake.net.okhttp.setRequestInterceptor
 import com.drake.net.request.BaseRequest
+import com.tencent.mmkv.MMKV
 import com.xu.kotandroid.converter.GsonConverter
 import java.util.concurrent.TimeUnit
 
@@ -22,7 +23,7 @@ class App :Application(){
 
     override fun onCreate() {
         super.onCreate()
-
+        MMKV.initialize(this)
         initNet()
     }
 
