@@ -1,19 +1,11 @@
 package com.xu.kotandroid
 
-import android.Manifest
-import android.content.pm.PackageManager
-import android.util.Log
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
+
+import android.content.Intent
+import android.net.Uri
 import com.xu.kotandroid.base.BaseActivity
 import com.xu.kotandroid.databinding.ActivityMainBinding
-import com.xu.kotandroid.ui.CalenderActivity
-import com.xu.kotandroid.ui.FingerActivity
-import com.xu.kotandroid.ui.MoreMenuPopupWindow
-import com.xu.kotandroid.ui.PanActivity
-import com.xu.kotandroid.util.CalendarEventsUtils
-import java.util.*
+import com.xu.kotandroid.ui.*
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -34,6 +26,28 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         }
 
         binding.toFinger.setOnClickListener { openActivity<FingerActivity>() }
+
+        binding.toComment.setOnClickListener {
+//            comment()
+            openActivity<WebActivity>()
+        }
+    }
+
+    private fun comment() {
+        try {
+            val uri = Uri.parse(
+                "market://details?id=cn.futu.trader"
+
+            ) //需要评分的APP包名
+            Intent(Intent.ACTION_VIEW, uri).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                setClassName("com.xiaomi.market", "com.xiaomi.market.ui.AppDetailActivity")
+//                setPackage("com.heytap.market")
+                startActivity(this)
+            }
+
+        } catch (e: Exception) {
+        }
     }
 
 

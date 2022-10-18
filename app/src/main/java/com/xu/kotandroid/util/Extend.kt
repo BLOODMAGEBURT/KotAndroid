@@ -9,5 +9,4 @@ package com.xu.kotandroid.util
 fun String.firstChar(): String {
 
     return this.first().toString()
-
 }
