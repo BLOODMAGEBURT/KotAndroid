@@ -28,9 +28,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.toFinger.setOnClickListener { openActivity<FingerActivity>() }
 
         binding.toComment.setOnClickListener {
-//            comment()
-            openActivity<WebActivity>()
+            comment()
         }
+        binding.toBtm.setOnClickListener { openActivity<BtmActivity>() }
     }
 
     private fun comment() {

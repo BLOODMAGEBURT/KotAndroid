@@ -13,6 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotAndroid">
         <activity
+            android:name=".ui.BtmActivity"
+            android:exported="false"
+            android:label="@string/title_activity_btm">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.WebActivity"
             android:exported="false" />
         <activity
