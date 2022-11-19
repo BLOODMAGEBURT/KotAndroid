@@ -12,6 +12,7 @@ import com.xu.kotandroid.R;
 import com.xu.kotandroid.base.Const;
 import com.xu.kotandroid.util.DateUtil;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.function.Consumer;
 
@@ -24,8 +25,9 @@ public class LimitActivity extends AppCompatActivity implements View.OnClickList
     private int daySize = 2;
     private int monthSize = 5;
 
+    MMKV kv = MMKV.defaultMMKV();
+
     LimitedQueue<Long> queue = new LimitedQueue<>(monthSize);
-    LimitedQueue<Long> dayQueue = new LimitedQueue<>(daySize);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,60 +44,57 @@ public class LimitActivity extends AppCompatActivity implements View.OnClickList
 
         if (id == R.id.showToast) {
             long now = System.currentTimeMillis();
-
-            long nowStart = DateUtil.dayStartTime(now);
-
-            Log.d("here", "0点:" + nowStart);
-            Log.d("here", "下一天0点:" + DateUtil.addDay(nowStart, 1));
+            String todayStr = DateUtil.date2Str(new Date(now), DateUtil.FORMAT_YYMD);
 
             /**
-             * 1. 先判断当天的数量,
+             * 1. 先判断当天的数量
+             *
              * 当天数量存在sp或者数据库中
-             * key = TODAY_SHOW_COUNT
-             * value = 当前时间戳｜当天弹出次数
+             *
+             * key1 = 最后一次时间戳 startAdLastDate
+             * key2 = 最后一天弹出次数 startAdDaily
+             *
              *
              * 2. 再判断当月的数量
              */
 
-            if (MMKV.defaultMMKV() != null) {
+
+            String lastDate = kv.decodeString("startAdLastDate", "");
 
 
-                MMKV.defaultMMKV().encode("TODAY_SHOW_COUNT", now + "|" + 2);
-
-
-            }
-
-
-            if (dayQueue.size() >= daySize) {
-                return;
-            }
-
-            dayQueue.add(nowStart);
-
-
-            if (queue.size() >= monthSize) {
-                // 队首时间
-                Long first = queue.getFirst();
-                // 判断时间是否在30天之外
-                if (DateUtil.addDay(first, 30) < now) {
-                    queue.add(nowStart);
-                    Toast.makeText(this, "30天之外，继续弹", Toast.LENGTH_SHORT).show();
+            if (todayStr.equals(lastDate)) {
+                // 同一天，判断当天次数是否已满
+                if (kv.decodeInt("startAdDaily") >= daySize) {
+                    return;
                 }
+
+            } else {
+                // 非同一天，次数清零
+                kv.encode("startAdDaily", 0);
+            }
+
+            // 队首时间
+            Long first = queue.getFirst();
+            if (queue.size() >= monthSize && DateUtil.addDay(first, 30) > now) {
+                // 队列已满，而且没过30天
                 return;
             }
 
 
-            Toast.makeText(this, "小于3次，所以弹", Toast.LENGTH_SHORT).show();
-            queue.add(nowStart);
+
+            Toast.makeText(this, "30天之外，继续弹", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "小于monthSize次，所以弹", Toast.LENGTH_SHORT).show();
+
+
+            kv.encode("startAdLastDate", todayStr);
+            int old = kv.decodeInt("startAdDaily");
+            kv.encode("startAdDaily", old + 1);
+
+            queue.add(now);
 
             Log.d("here", "size:" + queue.size());
 
-            queue.forEach(new Consumer<Long>() {
-                @Override
-                public void accept(Long aLong) {
-                    Log.d("here", "longN:" + aLong);
-                }
-            });
+            queue.forEach(aLong -> Log.d("here", "longN:" + aLong));
 
         }
     }
