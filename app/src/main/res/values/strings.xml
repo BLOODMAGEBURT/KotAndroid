@@ -7,4 +7,12 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="players">Players</string>
+    <string name="game">Game</string>
+    <string name="play_btn">playBtn</string>
+    <string name="please_fill_player_name">please fill player name</string>
+    <string name="coin_s_left">coin(s)left</string>
+    <string name="pass">pass</string>
+    <string name="roll">roll</string>
+    <string name="or">OR</string>
 </resources>

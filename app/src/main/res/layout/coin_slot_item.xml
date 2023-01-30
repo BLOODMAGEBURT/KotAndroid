@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="slotNum"
+            type="Integer" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:constraint_referenced_ids="ivCoin,line,tvNumber"
+            app:flow_verticalGap="5pt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/ivCoin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="36pt"
+            android:minHeight="36pt"
+            android:src="@drawable/baseline_coin_24" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="0pt"
+            android:layout_height="5pt"
+            android:background="@color/black" />
+
+
+        <TextView
+            android:id="@+id/tvNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:textSize="24pt"
+            tools:text="6" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

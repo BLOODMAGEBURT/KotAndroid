@@ -33,6 +33,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.toBtm.setOnClickListener { openActivity<BtmActivity>() }
 
         binding.toLimit.setOnClickListener { openActivity<LimitActivity>() }
+        binding.toPenny.setOnClickListener { openActivity<PennyActivity>() }
     }
 
     private fun comment() {

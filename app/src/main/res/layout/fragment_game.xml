@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        tools:context=".ui.fragments.PickPlayersFragment">
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flow_slot"
+            android:layout_width="0pt"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16pt"
+            android:orientation="horizontal"
+            app:constraint_referenced_ids="slot1,slot2,slot3,slot4,slot5,slot6"
+            app:flow_horizontalStyle="spread_inside"
+            app:flow_wrapMode="chain"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/slot1"
+            layout="@layout/coin_slot_item" />
+
+        <include
+            android:id="@+id/slot2"
+            layout="@layout/coin_slot_item" />
+
+        <include
+            android:id="@+id/slot3"
+            layout="@layout/coin_slot_item" />
+
+        <include
+            android:id="@+id/slot4"
+            layout="@layout/coin_slot_item" />
+
+        <include
+            android:id="@+id/slot5"
+            layout="@layout/coin_slot_item" />
+
+        <include
+            android:id="@+id/slot6"
+            layout="@layout/coin_slot_item" />
+
+
+        <TextView
+            android:id="@+id/tvPlayerName"
+            android:layout_width="0pt"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32pt"
+            android:textSize="32pt"
+            app:layout_constraintBottom_toBottomOf="@id/coinsLeftTag"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/coinsLeftNumbers"
+            tools:text="Michael" />
+
+
+        <TextView
+            android:id="@+id/coinsLeftNumbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24pt"
+            app:layout_constraintEnd_toEndOf="@id/coinsLeftTag"
+            app:layout_constraintStart_toStartOf="@id/coinsLeftTag"
+            app:layout_constraintTop_toBottomOf="@id/flow_slot"
+            tools:text="10" />
+
+        <TextView
+            android:id="@+id/coinsLeftTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32pt"
+            android:text="@string/coin_s_left"
+            android:textSize="12pt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/coinsLeftNumbers" />
+
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:layout_width="0pt"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16pt"
+            android:layout_marginTop="10pt"
+            android:orientation="horizontal"
+            app:constraint_referenced_ids="btnRoll,tvOr,btnPass"
+            app:flow_horizontalGap="5pt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/coinsLeftTag" />
+
+        <Button
+            android:id="@+id/btnRoll"
+            android:layout_width="0pt"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/baseline_dice_24"
+            android:padding="10pt"
+            android:text="@string/roll"
+            app:layout_constraintHorizontal_weight="3" />
+
+
+        <TextView
+            android:id="@+id/tvOr"
+            android:layout_width="0pt"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/or"
+            android:textSize="24pt"
+            app:layout_constraintHorizontal_weight="1" />
+
+
+        <Button
+            android:id="@+id/btnPass"
+            android:layout_width="0pt"
+            android:layout_height="wrap_content"
+
+            android:drawableEnd="@drawable/baseline_arrow_24"
+            android:padding="10pt"
+            android:text="@string/pass"
+            app:layout_constraintHorizontal_weight="3" />
+
+
+        <TextView
+            android:id="@+id/textCurrentTurnInfo"
+            android:layout_width="0pt"
+            android:layout_height="0pt"
+            android:layout_margin="16pt"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toTopOf="@id/textCurrentStandingsInfo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnRoll"
+            tools:text="This will contain info about the game." />
+
+
+        <TextView
+            android:id="@+id/textCurrentStandingsInfo"
+            android:layout_width="0pt"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16pt"
+            android:layout_marginBottom="16pt"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="This will contain the game's current standings." />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

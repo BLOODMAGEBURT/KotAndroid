@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotAndroid">
         <activity
+            android:name=".ui.PennyActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.LimitActivity"
             android:exported="false">
             <meta-data

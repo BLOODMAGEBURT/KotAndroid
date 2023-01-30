@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16pt"
+        tools:context=".ui.fragments.PickPlayersFragment">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16pt"
+            android:contentDescription="@string/play_btn"
+            android:src="@drawable/baseline_play_arrow_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/white" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0pt"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/main_player"
+                layout="@layout/player_list_item"
+                app:checkBoxHidden="@{true}"
+                app:switchHidden="@{true}" />
+
+            <include
+                android:id="@+id/player2"
+                layout="@layout/player_list_item"
+                app:checkBoxHidden="@{true}" />
+
+            <include
+                android:id="@+id/player3"
+                layout="@layout/player_list_item" />
+
+            <include
+                android:id="@+id/player4"
+                layout="@layout/player_list_item" />
+
+            <include
+                android:id="@+id/player5"
+                layout="@layout/player_list_item" />
+
+            <include
+                android:id="@+id/player6"
+                layout="@layout/player_list_item" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

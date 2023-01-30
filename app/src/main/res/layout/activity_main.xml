@@ -16,8 +16,8 @@
             android:id="@+id/hello"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="100pt"
             android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -128,6 +128,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toBtm" />
+
+
+        <TextView
+            android:id="@+id/toPenny"
+            android:layout_width="0pt"
+            android:layout_height="30pt"
+            android:layout_marginHorizontal="30pt"
+            android:layout_marginTop="10pt"
+            android:background="@color/teal_200"
+            android:gravity="center"
+            android:text="toPenny"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toLimit" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
