@@ -17,7 +17,7 @@
             android:id="@+id/flow_slot"
             android:layout_width="0pt"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16pt"
+            android:layout_margin="16pt"
             android:orientation="horizontal"
             app:constraint_referenced_ids="slot1,slot2,slot3,slot4,slot5,slot6"
             app:flow_horizontalStyle="spread_inside"
@@ -28,27 +28,33 @@
 
         <include
             android:id="@+id/slot1"
-            layout="@layout/coin_slot_item" />
+            layout="@layout/coin_slot_item"
+            app:slotNum="@{1}" />
 
         <include
             android:id="@+id/slot2"
-            layout="@layout/coin_slot_item" />
+            layout="@layout/coin_slot_item"
+            app:slotNum="@{2}" />
 
         <include
             android:id="@+id/slot3"
-            layout="@layout/coin_slot_item" />
+            layout="@layout/coin_slot_item"
+            app:slotNum="@{3}" />
 
         <include
             android:id="@+id/slot4"
-            layout="@layout/coin_slot_item" />
+            layout="@layout/coin_slot_item"
+            app:slotNum="@{4}" />
 
         <include
             android:id="@+id/slot5"
-            layout="@layout/coin_slot_item" />
+            layout="@layout/coin_slot_item"
+            app:slotNum="@{5}" />
 
         <include
             android:id="@+id/slot6"
-            layout="@layout/coin_slot_item" />
+            layout="@layout/coin_slot_item"
+            app:slotNum="@{6}" />
 
 
         <TextView

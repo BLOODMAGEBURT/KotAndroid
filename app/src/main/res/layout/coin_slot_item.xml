@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:constraint_referenced_ids="ivCoin,line,tvNumber"
-            app:flow_verticalGap="5pt"
+            app:flow_verticalGap="3pt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,14 +30,14 @@
             android:id="@+id/ivCoin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="36pt"
-            android:minHeight="36pt"
+            android:minWidth="30pt"
+            android:minHeight="30pt"
             android:src="@drawable/baseline_coin_24" />
 
         <View
             android:id="@+id/line"
             android:layout_width="0pt"
-            android:layout_height="5pt"
+            android:layout_height="3pt"
             android:background="@color/black" />
 
 
@@ -45,7 +45,7 @@
             android:id="@+id/tvNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3"
+            android:text='@{slotNum + ""}'
             android:textSize="24pt"
             tools:text="6" />
 

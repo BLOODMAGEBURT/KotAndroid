@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.xu.kotandroid.ui.vm.PickPlayersViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,29 +38,33 @@
             <include
                 android:id="@+id/main_player"
                 layout="@layout/player_list_item"
-                app:checkBoxHidden="@{true}"
-                app:switchHidden="@{true}" />
+                app:player='@{vm.players[0]}'
+              />
 
             <include
                 android:id="@+id/player2"
                 layout="@layout/player_list_item"
-                app:checkBoxHidden="@{true}" />
+                app:player='@{vm.players[1]}' />
 
             <include
                 android:id="@+id/player3"
-                layout="@layout/player_list_item" />
+                layout="@layout/player_list_item"
+                app:player='@{vm.players[2]}' />
 
             <include
                 android:id="@+id/player4"
-                layout="@layout/player_list_item" />
+                layout="@layout/player_list_item"
+                app:player='@{vm.players[3]}' />
 
             <include
                 android:id="@+id/player5"
-                layout="@layout/player_list_item" />
+                layout="@layout/player_list_item"
+                app:player='@{vm.players[4]}' />
 
             <include
                 android:id="@+id/player6"
-                layout="@layout/player_list_item" />
+                layout="@layout/player_list_item"
+                app:player='@{vm.players[5]}' />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>

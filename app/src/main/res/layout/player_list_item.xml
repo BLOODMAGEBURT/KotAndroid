@@ -6,13 +6,12 @@
 
         <import type="android.view.View" />
 
-        <variable
-            name="checkBoxHidden"
-            type="Boolean" />
+        <import type="com.xu.kotandroid.ui.model.AI" />
 
         <variable
-            name="switchHidden"
-            type="Boolean" />
+            name="player"
+            type="com.xu.kotandroid.ui.model.NewPlayer" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +22,8 @@
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{checkBoxHidden?View.INVISIBLE:View.VISIBLE}"
+            android:checked="@={player.isInclude}"
+            android:visibility="@{player.canBeRemoved?View.VISIBLE:View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/et_player_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/et_player_name" />
@@ -33,17 +33,37 @@
             android:layout_width="0pt"
             android:layout_height="wrap_content"
             android:layout_margin="5pt"
+            android:autofillHints="text"
             android:hint="@string/please_fill_player_name"
             android:inputType="textPersonName"
+            android:text="@={player.playerName}"
+            android:visibility="@{player.isHuman?View.VISIBLE:View.INVISIBLE}"
             app:layout_constraintEnd_toStartOf="@id/switch_player_type"
             app:layout_constraintStart_toEndOf="@id/checkbox"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinnerAiName"
+            android:layout_width="0pt"
+            android:layout_height="wrap_content"
+            android:layout_margin="5pt"
+            android:autofillHints="text"
+            android:entries="@{AI.getBasicAI()}"
+            android:hint="@string/please_fill_player_name"
+            android:inputType="textPersonName"
+            android:selectedItemPosition="@={player.selectedAIPosition}"
+            android:visibility="@{player.isHuman?View.INVISIBLE:View.VISIBLE}"
+            app:layout_constraintEnd_toStartOf="@id/switch_player_type"
+            app:layout_constraintStart_toEndOf="@id/checkbox"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch_player_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{switchHidden?View.INVISIBLE:View.VISIBLE}"
+            android:checked="@={player.isHuman}"
+            android:visibility="@{player.canBeToggled?View.VISIBLE:View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/et_player_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/et_player_name" />
