@@ -88,6 +88,8 @@ class PanView @JvmOverloads constructor(
         val rect = RectF(-r, -r, r, r)
 
         canvas.save()
+
+
         data.forEachIndexed { index, angle ->
 
             if (angle == 0f) {
@@ -113,22 +115,26 @@ class PanView @JvmOverloads constructor(
             }
             linePaint.color = context.getColor(colors[index])
 
+
+
             canvas.rotate(angle * 360 / 2f)
             totalAngel += angle * 360 / 2f
             canvas.drawLine(0f, -r, 0f, -r - 30, linePaint)
 
 
             canvas.save()
+
+
             canvas.translate(0f, -r - 30)
             canvas.rotate(90 - totalAngel + if (index >= 4) 180f else 0f)
             canvas.drawLine(0f, 0f, 0f, -r / 2, linePaint)
-
-
             canvas.save()
             canvas.translate(0f, -r / 2)
             canvas.rotate(-90f)
             canvas.drawText("$angle%", 0f, 0f, textPaint)
             canvas.restore()
+
+
 
             canvas.restore()
 

@@ -14,4 +14,9 @@ data class NewPlayer(
     val canBeToggled: Boolean = true,
     var isInclude: ObservableBoolean = ObservableBoolean(!canBeRemoved),
     var selectedAIPosition: Int = -1,
-)
+) {
+
+    fun selectAI() = if (!isHuman.get()) AI.basicAI.getOrNull(selectedAIPosition) else null
+
+
+}

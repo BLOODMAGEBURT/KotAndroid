@@ -91,4 +91,11 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     // Feature module Support
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
+    // F2Native
+    implementation 'com.github.antvis:F2Native:2.1.16'
+
+    // AAChart
+    implementation 'com.github.AAChartModel:AAChartCore-Kotlin:6.0.0'
+
 }

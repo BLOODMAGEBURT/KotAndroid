@@ -18,6 +18,8 @@ class BtmActivity : BaseActivity<ActivityBtmBinding>(R.layout.activity_btm) {
 
         val navController = findNavController(R.id.nav_host_fragment_activity_btm)
 
+
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications

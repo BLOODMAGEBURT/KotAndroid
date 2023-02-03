@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotAndroid">
         <activity
+            android:name=".ui.chart.PieActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.chart.AAActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.chart.F2Activity"
+            android:exported="false" />
+        <activity
             android:name=".ui.PennyActivity"
             android:exported="false" />
         <activity

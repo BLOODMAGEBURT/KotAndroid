@@ -46,16 +46,13 @@
             android:id="@+id/spinnerAiName"
             android:layout_width="0pt"
             android:layout_height="wrap_content"
-            android:layout_margin="5pt"
-            android:autofillHints="text"
             android:entries="@{AI.getBasicAI()}"
-            android:hint="@string/please_fill_player_name"
-            android:inputType="textPersonName"
             android:selectedItemPosition="@={player.selectedAIPosition}"
             android:visibility="@{player.isHuman?View.INVISIBLE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/et_player_name"
             app:layout_constraintEnd_toStartOf="@id/switch_player_type"
             app:layout_constraintStart_toEndOf="@id/checkbox"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/et_player_name" />
 
 
         <androidx.appcompat.widget.SwitchCompat
@@ -63,10 +60,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="@={player.isHuman}"
+            android:enabled="@{player.isInclude}"
+            android:thumb="@drawable/ai_toggle_bg"
             android:visibility="@{player.canBeToggled?View.VISIBLE:View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/et_player_name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/et_player_name" />
+            app:layout_constraintTop_toTopOf="@id/et_player_name"
+            app:thumbTint="@color/ai_toggle_color" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

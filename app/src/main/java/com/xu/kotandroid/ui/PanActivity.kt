@@ -15,30 +15,9 @@ class PanActivity : BaseActivity<ActivityPanBinding>(R.layout.activity_pan) {
 
     override fun initView() {
 
-        binding.et.filters = arrayOf<InputFilter>(PriceInputFilter2(4, 2, 1, 4))
-
-
     }
 
     override fun initData() {
-
-        runBlocking {
-
-        }
-
-        scopeNetLife {
-
-            delay(200L)
-
-            launch {
-                yield()
-            }
-
-            val deffered = Get<String>("")
-
-            withTimeout(200) {}
-            fastest(listOf(deffered))
-        }
 
     }
 

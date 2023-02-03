@@ -15,7 +15,8 @@ class PickPlayersViewModel : ViewModel() {
         this.value = (1..6).map {
             NewPlayer(
                 canBeRemoved = it > 2,
-                canBeToggled = it > 1
+                canBeToggled = it > 1,
+                selectedAIPosition = it-1
             )
         }
     }

@@ -10,16 +10,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.PanActivity">
+        tools:context=".ui.chart.AAActivity">
 
-        <com.xu.kotandroid.view.PanView
-            android:id="@+id/pan"
-            android:layout_width="200pt"
-            android:layout_height="200pt"
+
+        <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+            android:id="@+id/aa_chart_view"
+            android:layout_width="0pt"
+            android:layout_height="220pt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
+        </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

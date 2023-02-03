@@ -2,7 +2,8 @@
 buildscript {
     ext {
         lc_version = '2.5.1'
-        nav_version = '2.5.3'
+//        nav_version = '2.5.3'
+        nav_version = '2.3.3'
     }
 
 

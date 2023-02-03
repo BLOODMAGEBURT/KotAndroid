@@ -1,6 +1,7 @@
 package com.xu.kotandroid.ui
 
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.xu.kotandroid.R
@@ -14,6 +15,11 @@ class PennyActivity : BaseActivity<ActivityPennyBinding>(R.layout.activity_penny
 
         val navView: BottomNavigationView = binding.bottomNav
         val navController = findNavController(R.id.containerFragment)
+
+//        val navHostFragment =
+//            supportFragmentManager.findFragmentById(R.id.containerFragment) as NavHostFragment
+//        val navController = navHostFragment.navController
+
         navView.setupWithNavController(navController)
     }
 

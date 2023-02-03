@@ -10,16 +10,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.PanActivity">
+        tools:context=".ui.chart.PieActivity">
 
-        <com.xu.kotandroid.view.PanView
-            android:id="@+id/pan"
-            android:layout_width="200pt"
-            android:layout_height="200pt"
+        <com.xu.kotandroid.view.PieChartView
+            android:id="@+id/pie"
+            android:layout_width="0pt"
+            android:layout_height="300pt"
+            android:background="#ccc"
+            app:circleRadius="80pt"
+            app:textSize="14pt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

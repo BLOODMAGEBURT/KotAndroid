@@ -6,6 +6,9 @@ import android.net.Uri
 import com.xu.kotandroid.base.BaseActivity
 import com.xu.kotandroid.databinding.ActivityMainBinding
 import com.xu.kotandroid.ui.*
+import com.xu.kotandroid.ui.chart.AAActivity
+import com.xu.kotandroid.ui.chart.F2Activity
+import com.xu.kotandroid.ui.chart.PieActivity
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -34,6 +37,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
         binding.toLimit.setOnClickListener { openActivity<LimitActivity>() }
         binding.toPenny.setOnClickListener { openActivity<PennyActivity>() }
+        binding.toF2.setOnClickListener { openActivity<F2Activity>() }
+        binding.toAA.setOnClickListener { openActivity<AAActivity>() }
+        binding.toPie.setOnClickListener { openActivity<PieActivity>() }
     }
 
     private fun comment() {

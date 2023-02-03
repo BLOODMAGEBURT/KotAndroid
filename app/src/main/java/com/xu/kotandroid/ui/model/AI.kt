@@ -1,5 +1,7 @@
 package com.xu.kotandroid.ui.model
 
+import androidx.databinding.BaseObservable
+
 /**
  * @Author Xu
  * Date：2023/1/31 11:37
@@ -14,12 +16,12 @@ data class AI(val name: String) {
             AI("TwoFace"),
             AI("PinkFly"),
             AI("fly"),
-            AI("inf"),
             AI("sky"),
             AI("000"),
-            AI("moon"),
+            AI("moon")
         )
 
     }
+
 
 }
