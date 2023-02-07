@@ -15,13 +15,30 @@
         <com.xu.kotandroid.view.PieChartView
             android:id="@+id/pie"
             android:layout_width="0pt"
-            android:layout_height="300pt"
+            android:layout_height="250pt"
             android:background="#ccc"
             app:circleRadius="80pt"
-            app:textSize="14pt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:textSize="14pt" />
+
+
+        <com.xu.kotandroid.view.ContainsView
+            android:id="@+id/container"
+            android:layout_width="0pt"
+            android:layout_height="150pt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pie" />
+
+        <com.xu.kotandroid.view.SpiderView
+            android:id="@+id/spider"
+            android:layout_width="0pt"
+            android:layout_height="200pt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/container" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
