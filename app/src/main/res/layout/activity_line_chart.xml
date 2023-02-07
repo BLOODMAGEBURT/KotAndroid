@@ -16,24 +16,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <!--    <com.xu.kotandroid.view.LineView-->
-    <!--        android:layout_width="0pt"-->
-    <!--        android:layout_height="300dp"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/curve" />-->
-
-
     <com.xu.kotandroid.view.MiniFenShiView
         android:id="@+id/fsView"
-        android:background="@color/black"
         android:layout_width="0pt"
         android:layout_height="100pt"
         android:layout_marginTop="20dp"
+        android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/curve" />
+
+
+    <com.xu.kotandroid.view.LineView
+        android:layout_width="0pt"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fsView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

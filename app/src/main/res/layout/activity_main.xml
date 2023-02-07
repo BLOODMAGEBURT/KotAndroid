@@ -22,32 +22,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/pan"
-            android:layout_width="0pt"
-            android:layout_height="30pt"
-            android:layout_marginHorizontal="30pt"
-            android:layout_marginTop="10pt"
-            android:background="@color/teal_200"
-            android:gravity="center"
-            android:text="to Pan"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/hello" />
-
-
-        <TextView
-            android:id="@+id/pop"
-            android:layout_width="0pt"
-            android:layout_height="30pt"
-            android:layout_marginHorizontal="30pt"
-            android:layout_marginTop="10pt"
-            android:background="@color/teal_200"
-            android:gravity="center"
-            android:text="show pop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pan" />
 
         <TextView
             android:id="@+id/add"
@@ -62,126 +36,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/toCalendar"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
             android:layout_width="0pt"
-            android:layout_height="30pt"
-            android:layout_marginHorizontal="30pt"
-            android:layout_marginTop="10pt"
-            android:background="@color/teal_200"
-            android:gravity="center"
-            android:text="toCalendar"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pop" />
-
-        <TextView
-            android:id="@+id/toFinger"
-            android:layout_width="0pt"
-            android:layout_height="30pt"
-            android:layout_marginHorizontal="30pt"
-            android:layout_marginTop="10pt"
-            android:background="@color/teal_200"
-            android:gravity="center"
-            android:text="toFinger"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toCalendar" />
-
-        <TextView
-            android:id="@+id/toComment"
-            android:layout_width="0pt"
-            android:layout_height="30pt"
-            android:layout_marginHorizontal="30pt"
-            android:layout_marginTop="10pt"
-            android:background="@color/teal_200"
-            android:gravity="center"
-            android:text="toComment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toFinger" />
-
-
-        <TextView
-            android:id="@+id/toBtm"
-            android:layout_width="0pt"
-            android:layout_height="30pt"
-            android:layout_marginHorizontal="30pt"
-            android:layout_marginTop="10pt"
-            android:background="@color/teal_200"
-            android:gravity="center"
-            android:text="toBtm"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toComment" />
-
-
-        <TextView
-            android:id="@+id/toLimit"
-            android:layout_width="0pt"
-            android:layout_height="30pt"
-            android:layout_marginHorizontal="30pt"
-            android:layout_marginTop="10pt"
-            android:background="@color/teal_200"
-            android:gravity="center"
-            android:text="toLimit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toBtm" />
-
-
-        <TextView
-            android:id="@+id/toPenny"
-            android:layout_width="0pt"
-            android:layout_height="30pt"
-            android:layout_marginHorizontal="30pt"
-            android:layout_marginTop="10pt"
-            android:background="@color/teal_200"
-            android:gravity="center"
-            android:text="toPenny"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toLimit" />
-
-        <TextView
-            android:id="@+id/toF2"
-            android:layout_width="0pt"
-            android:layout_height="30pt"
-            android:layout_marginHorizontal="30pt"
-            android:layout_marginTop="10pt"
-            android:background="@color/teal_200"
-            android:gravity="center"
-            android:text="toF2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toPenny" />
-
-        <TextView
-            android:id="@+id/toAA"
-            android:layout_width="0pt"
-            android:layout_height="30pt"
-            android:layout_marginHorizontal="30pt"
-            android:layout_marginTop="10pt"
-            android:background="@color/teal_200"
-            android:gravity="center"
-            android:text="toAA"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toF2" />
-
-
-        <TextView
-            android:id="@+id/toPie"
-            android:layout_width="0pt"
-            android:layout_height="30pt"
-            android:layout_marginHorizontal="30pt"
-            android:layout_marginTop="10pt"
-            android:background="@color/teal_200"
-            android:gravity="center"
-            android:text="toPie"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toAA" />
+            app:layout_constraintTop_toBottomOf="@id/hello" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

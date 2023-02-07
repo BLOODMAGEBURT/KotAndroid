@@ -2,6 +2,7 @@ package com.xu.kotandroid
 
 import android.app.Application
 import android.app.ProgressDialog
+import com.drake.brv.utils.BRV
 import com.drake.net.NetConfig
 import com.drake.net.interceptor.LogRecordInterceptor
 import com.drake.net.interceptor.RequestInterceptor
@@ -24,6 +25,8 @@ class App :Application(){
     override fun onCreate() {
         super.onCreate()
         MMKV.initialize(this)
+        // 初始化BindingAdapter的默认绑定ID
+        BRV.modelId = BR.m
         initNet()
     }
 

@@ -3,43 +3,28 @@ package com.xu.kotandroid
 
 import android.content.Intent
 import android.net.Uri
+import com.blankj.utilcode.util.DeviceUtils.getModel
+import com.drake.brv.utils.linear
+import com.drake.brv.utils.setup
 import com.xu.kotandroid.base.BaseActivity
 import com.xu.kotandroid.databinding.ActivityMainBinding
 import com.xu.kotandroid.ui.*
 import com.xu.kotandroid.ui.chart.AAActivity
 import com.xu.kotandroid.ui.chart.F2Activity
 import com.xu.kotandroid.ui.chart.PieActivity
+import com.xu.kotandroid.ui.model.TextModel
+import org.w3c.dom.Text
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
 
     private fun initListener() {
-        binding.pan.setOnClickListener {
-            openActivity<PanActivity>()
-        }
+
 
         binding.add.setOnClickListener {
             MoreMenuPopupWindow(this).showPopupWindow(binding.add, 300, 200)
         }
-
-        binding.toCalendar.setOnClickListener {
-
-            openActivity<CalenderActivity>()
-        }
-
-        binding.toFinger.setOnClickListener { openActivity<FingerActivity>() }
-
-        binding.toComment.setOnClickListener {
-            comment()
-        }
-        binding.toBtm.setOnClickListener { openActivity<BtmActivity>() }
-
-        binding.toLimit.setOnClickListener { openActivity<LimitActivity>() }
-        binding.toPenny.setOnClickListener { openActivity<PennyActivity>() }
-        binding.toF2.setOnClickListener { openActivity<F2Activity>() }
-        binding.toAA.setOnClickListener { openActivity<AAActivity>() }
-        binding.toPie.setOnClickListener { openActivity<PieActivity>() }
     }
 
     private fun comment() {
@@ -66,7 +51,52 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun initView() {
         initListener()
+
+        binding.rv.linear().setup {
+            addType<TextModel>(R.layout.item_text)
+            R.id.itemRoot.onClick {
+                handelClick(getModel<TextModel>().text)
+            }
+        }.models = makeData()
+
+    }
+
+    private fun handelClick(text: String) {
+        when (text) {
+            "toPan" -> openActivity<PanActivity>()
+            "toCalendar" -> openActivity<CalenderActivity>()
+            "toFinger" -> openActivity<FingerActivity>()
+            "toComment" -> comment()
+            "toBtm" -> openActivity<BtmActivity>()
+            "toLimit" -> openActivity<LimitActivity>()
+            "toPenny" -> openActivity<PennyActivity>()
+            "toF2" -> openActivity<F2Activity>()
+            "toAA" -> openActivity<AAActivity>()
+            "toPie" -> openActivity<PieActivity>()
+            "toLine" -> openActivity<LineChartActivity>()
+            else -> {}
+        }
     }
 
 
+    private fun makeData(): List<TextModel> {
+
+        return listOf(
+            TextModel("toPan"),
+            TextModel("toCalendar"),
+            TextModel("toFinger"),
+            TextModel("toComment"),
+            TextModel("toBtm"),
+            TextModel("toLimit"),
+            TextModel("toPenny"),
+            TextModel("toF2"),
+            TextModel("toAA"),
+            TextModel("toPie"),
+            TextModel("toLine")
+        )
+    }
+
 }
+
+
+
