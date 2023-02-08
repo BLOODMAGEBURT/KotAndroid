@@ -39,7 +39,7 @@ class SpiderView @JvmOverloads constructor(
 
     companion object {
         const val MAX = 6f
-        const val POLYGON_SIDES = 6
+        const val POLYGON_SIDES = 12
     }
 
     init {
