@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
+import com.blankj.utilcode.util.AdaptScreenUtils
 
 /**
  * @Author Xu
@@ -16,6 +17,8 @@ val Int.dp: Float
 val Int.px: Float
     get() = (this * Resources.getSystem().displayMetrics.density)
 
+val Int.pt: Float
+    get() = AdaptScreenUtils.pt2Px(this.toFloat()).toFloat()
 
 internal inline fun <reified T : Activity> Context.openActivity(block: Intent.() -> Unit = {}) {
     val intent = Intent(this, T::class.java)

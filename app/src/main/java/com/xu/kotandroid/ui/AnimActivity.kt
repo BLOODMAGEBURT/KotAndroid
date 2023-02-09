@@ -1,6 +1,7 @@
 package com.xu.kotandroid.ui
 
 import android.animation.AnimatorSet
+import android.animation.LayoutTransition
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -20,6 +21,16 @@ class AnimActivity : BaseActivity<ActivityAnimBinding>(R.layout.activity_anim) {
 
     override fun initView() {
 
+//        val animIn = ObjectAnimator.ofFloat(null, "rotaionY", 0f, 180f, 0f)
+//        val animOut = ObjectAnimator.ofFloat(null, "rotaion", 0f, 90f, 0f)
+//
+//        val trans = LayoutTransition().apply {
+//            setAnimator(LayoutTransition.APPEARING, animIn)
+//            setAnimator(LayoutTransition.DISAPPEARING, animOut)
+//        }
+//
+//        binding.cl.layoutTransition = trans
+
         binding.animTv.setOnClickListener { doTextAnim() }
         binding.objectTv.setOnClickListener { doObjAnim() }
         binding.animSet.setOnClickListener { doSetAnim() }
@@ -29,21 +40,21 @@ class AnimActivity : BaseActivity<ActivityAnimBinding>(R.layout.activity_anim) {
 
     private fun doSetAnim() {
 
-        if (textAnim?.isRunning == true) {
-            return
-        }
 
-        if (objAnim?.isRunning == true) {
-            return
-        }
+//        binding.objectTv.animate().scaleX(0.5f).scaleX(0.8f)
+
+//        binding.objectTv.animate().translationX(100f)
+//        binding.animSet.animate().xBy(100f)
 
 
-        AnimatorSet().apply {
-            // 会覆盖各自的duration,使用统一的duration
-            duration = 3000
-            playSequentially(textAnim, objAnim)
-            start()
-        }
+//        AnimatorSet().apply {
+//            // 会覆盖各自的duration,使用统一的duration
+//            duration = 3000
+//            playSequentially(textAnim, objAnim)
+//            start()
+//        }
+
+
 
     }
 
@@ -82,7 +93,6 @@ class AnimActivity : BaseActivity<ActivityAnimBinding>(R.layout.activity_anim) {
 
             start()
         }
-
 
     }
 

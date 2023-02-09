@@ -8,18 +8,12 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.AnimActivity">
 
-        <com.xu.kotandroid.view.LoadingView
-            android:id="@+id/loading"
-            android:layout_width="0pt"
-            android:layout_height="50pt"
-            android:layout_marginTop="100pt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/animTv"
@@ -30,7 +24,7 @@
             android:textSize="16pt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/loading" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
@@ -56,6 +50,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/objectTv" />
+
+
+        <com.xu.kotandroid.view.SearchView
+            android:id="@+id/search"
+            android:layout_width="100pt"
+            android:layout_height="100pt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/animSet" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
