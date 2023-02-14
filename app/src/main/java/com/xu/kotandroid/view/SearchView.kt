@@ -6,6 +6,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import kotlin.math.abs
@@ -94,7 +95,7 @@ class SearchView @JvmOverloads constructor(
                 dst.reset()
                 val length = pathMeasure.length
                 val stop = length * mAnimatorValue
-                val start = stop - ((0.5f - abs(mAnimatorValue - 0.5f)) * radius)
+                val start = stop - ((0.5f - abs(mAnimatorValue - 0.5f)) * length)
                 pathMeasure.getSegment(start, stop, dst, true)
                 canvas.drawPath(dst, paint)
             }
@@ -153,7 +154,7 @@ class SearchView @JvmOverloads constructor(
 
         startAnim = ValueAnimator.ofFloat(0f, 1f).apply {
             duration = 1500
-
+            interpolator = AccelerateDecelerateInterpolator()
             addUpdateListener {
                 mAnimatorValue = (it.animatedValue as Float)
                 invalidate()
@@ -165,6 +166,7 @@ class SearchView @JvmOverloads constructor(
                 currentState = SearchState.SEARCHING
                 searchingAnim = ValueAnimator.ofFloat(0f, 1f).apply {
                     duration = 1500
+                    interpolator = AccelerateDecelerateInterpolator()
                     repeatCount = ValueAnimator.INFINITE
                     addUpdateListener {
                         mAnimatorValue = (it.animatedValue as Float)
@@ -203,7 +205,9 @@ class SearchView @JvmOverloads constructor(
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
+        startAnim?.cancel()
         searchingAnim?.cancel()
+        doneAnim?.cancel()
     }
 
 }

@@ -14,7 +14,6 @@
         tools:context=".ui.AnimActivity">
 
 
-
         <TextView
             android:id="@+id/animTv"
             android:layout_width="wrap_content"
@@ -59,6 +58,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/animSet" />
+
+        <com.xu.kotandroid.view.CircleLoadingView
+            android:id="@+id/circleLoading"
+            android:layout_width="100pt"
+            android:layout_height="120pt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
