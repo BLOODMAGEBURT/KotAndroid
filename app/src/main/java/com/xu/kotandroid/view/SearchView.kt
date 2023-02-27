@@ -4,6 +4,7 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -120,11 +121,14 @@ class SearchView @JvmOverloads constructor(
 
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
+
         if (event.action == MotionEvent.ACTION_DOWN) {
+            Log.d("touch11", "onTouchEvent Down")
             return true
         } else if (
             event.action == MotionEvent.ACTION_UP
         ) {
+            Log.d("touch11", "onTouchEvent UP")
             performClick()
             return true
         }

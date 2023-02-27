@@ -100,4 +100,16 @@ dependencies {
     // AAChart
     implementation 'com.github.AAChartModel:AAChartCore-Kotlin:6.0.0'
 
+    // anyChart
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
+
+    // williamChart
+    implementation 'com.diogobernardino:williamchart:3.10.1'
+//    implementation 'com.diogobernardino.williamchart:tooltip-slider:3.10.1'
+//    implementation 'com.diogobernardino.williamchart:tooltip-points:3.10.1'
+
+    //berryChart
+    implementation 'com.github.STRAIBERRY-AI-INC:Straiberry-charts:1.1.0'
+
+
 }

@@ -4,6 +4,8 @@ import android.animation.AnimatorSet
 import android.animation.LayoutTransition
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.util.Log
+import android.view.MotionEvent
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
@@ -35,6 +37,17 @@ class AnimActivity : BaseActivity<ActivityAnimBinding>(R.layout.activity_anim) {
         binding.objectTv.setOnClickListener { doObjAnim() }
         binding.animSet.setOnClickListener { doSetAnim() }
 
+        binding.search.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                Log.d("touch11", "onTouchListener Down")
+            } else if (
+                event.action == MotionEvent.ACTION_UP
+            ) {
+                Log.d("touch11", "onTouchListener UP")
+                v.performClick()
+            }
+            true
+        }
 
     }
 
@@ -53,7 +66,6 @@ class AnimActivity : BaseActivity<ActivityAnimBinding>(R.layout.activity_anim) {
 //            playSequentially(textAnim, objAnim)
 //            start()
 //        }
-
 
 
     }
