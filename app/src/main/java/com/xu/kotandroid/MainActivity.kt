@@ -75,6 +75,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             "toPie" -> openActivity<PieActivity>()
             "toLine" -> openActivity<LineChartActivity>()
             "toAnim" -> openActivity<AnimActivity>()
+            "toText" -> openActivity<TextActivity>()
             else -> {}
         }
     }
@@ -95,6 +96,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             TextModel("toPie"),
             TextModel("toLine"),
             TextModel("toAnim"),
+            TextModel("toText"),
         )
     }
 
