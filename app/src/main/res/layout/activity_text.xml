@@ -13,11 +13,20 @@
         tools:context=".ui.TextActivity">
 
         <com.xu.kotandroid.view.FourLineText
+            android:id="@+id/four"
             android:layout_width="0pt"
             android:layout_height="200pt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.xu.kotandroid.view.SignView
+            android:layout_width="0pt"
+            android:layout_height="400pt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/four" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

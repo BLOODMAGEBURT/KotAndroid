@@ -3,6 +3,7 @@ package com.xu.kotandroid.view
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.DashPathEffect
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
@@ -37,12 +38,14 @@ class FourLineText @JvmOverloads constructor(
             style = Paint.Style.STROKE
             strokeWidth = 1f
             isAntiAlias = true
+            pathEffect = DashPathEffect(floatArrayOf(10f, 5f), 3f)
         }
 
         textPaint.apply {
             style = Paint.Style.FILL
             textSize = 16.pt
             isAntiAlias = true
+
         }
 
     }
