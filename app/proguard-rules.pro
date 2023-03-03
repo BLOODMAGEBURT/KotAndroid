@@ -21,3 +21,7 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class com.github.aachartmodel.aainfographics.** { *; }
+-dontwarn com.tencent.tbs.reader.**
+-keep class com.tencent.tbs.reader.** {
+    *;
+}

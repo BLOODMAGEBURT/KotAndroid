@@ -12,6 +12,8 @@ import com.drake.net.okhttp.setLog
 import com.drake.net.okhttp.setRequestInterceptor
 import com.drake.net.request.BaseRequest
 import com.tencent.mmkv.MMKV
+import com.tencent.tbs.reader.TbsFileInterfaceImpl
+import com.xu.kotandroid.base.Const
 import com.xu.kotandroid.converter.GsonConverter
 import java.util.concurrent.TimeUnit
 
@@ -20,7 +22,7 @@ import java.util.concurrent.TimeUnit
  * Date：2021/9/23 5:36 下午
  * Description：
  */
-class App :Application(){
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -28,6 +30,12 @@ class App :Application(){
         // 初始化BindingAdapter的默认绑定ID
         BRV.modelId = BR.m
         initNet()
+        initTbs()
+    }
+
+    private fun initTbs() {
+        TbsFileInterfaceImpl.setLicenseKey(Const.TBS_KEY)
+        TbsFileInterfaceImpl.initEngine(this)
     }
 
     private fun initNet() {

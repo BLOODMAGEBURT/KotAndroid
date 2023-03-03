@@ -14,4 +14,6 @@ object Const {
 
     const val PWD = "pwd"
     const val KEY_PRIVACY_AGREEMENT = "keyPrivacyAgreement"
+
+    const val TBS_KEY = "Mm6v0OGn6UiEKtwvtmV+fi8KKANaDW5wtSA+mLCnVmMfKc/Hn1p/0Obe3PGqqGhl"
 }

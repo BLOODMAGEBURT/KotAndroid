@@ -76,6 +76,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             "toLine" -> openActivity<LineChartActivity>()
             "toAnim" -> openActivity<AnimActivity>()
             "toText" -> openActivity<TextActivity>()
+            "toAop" -> openActivity<AopActivity>()
+            "toTbs" -> openActivity<TbsActivity>()
             else -> {}
         }
     }
@@ -97,6 +99,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             TextModel("toLine"),
             TextModel("toAnim"),
             TextModel("toText"),
+            TextModel("toAop"),
+            TextModel("toTbs"),
         )
     }
 

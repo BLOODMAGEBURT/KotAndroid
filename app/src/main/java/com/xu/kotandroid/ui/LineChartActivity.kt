@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.xu.kotandroid.R
 import com.xu.kotandroid.bean.FenShiBean
-import com.xu.kotandroid.const.Const
 import com.xu.kotandroid.util.JsonUtils
 import com.xu.kotandroid.view.MiniFenShiView
 
