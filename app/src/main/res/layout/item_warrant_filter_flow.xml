@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="m"
+            type="com.xu.kotandroid.model.WarrantFilterWithFlowModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/flowRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="32pt"
+            android:layout_marginEnd="0pt"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@{m.text}"
+            android:textColor="@color/color33"
+            android:textSize="16pt"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="类型"
+            tools:textColor="@color/color33" />
+
+        <ImageView
+            gone="@{!m.hasMore}"
+            android:layout_width="16pt"
+            android:layout_height="16pt"
+            android:src="@{context.getDrawable(m.expandIcon)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/arrow_down" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

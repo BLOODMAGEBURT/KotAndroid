@@ -16,4 +16,10 @@
     <!--rgb(235,66,66)-->
     <color name="mini_fen_shi_up">#EB4242</color>
     <color name="mini_fen_shi_gradient_bottom">#00000000</color>
+
+
+    <color name="primary_blue">#629EFF</color>
+    <color name="btn_text_white">#FFFFFFFF</color>
+    <color name="divider27">#272727</color>
+    <color name="color33">#333333</color>
 </resources>

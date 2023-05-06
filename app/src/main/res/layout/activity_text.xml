@@ -22,11 +22,26 @@
 
 
         <com.xu.kotandroid.view.SignView
+            android:id="@+id/sign"
             android:layout_width="0pt"
-            android:layout_height="400pt"
+            android:layout_height="200pt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/four" />
+
+
+        <com.db.williamchart.view.DonutChartView
+            android:id="@+id/donutChart"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:chart_donutBackgroundColor="#191919 "
+            app:chart_donutRoundCorners="false"
+            app:chart_donutThickness="20dp"
+            app:chart_donutTotal="100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sign" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

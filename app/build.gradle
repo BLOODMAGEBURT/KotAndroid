@@ -68,9 +68,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lc_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lc_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lc_version"
-    implementation 'androidx.activity:activity-ktx:1.6.1'
-    implementation 'androidx.core:core-ktx:+'
-    implementation 'androidx.core:core-ktx:+'
+    implementation 'androidx.activity:activity-ktx:1.7.0'
     // have included by nav-fragment-ktx
 //    implementation 'androidx.fragment:fragment-ktx:1.5.5'
     testImplementation 'junit:junit:4.+'

@@ -12,7 +12,6 @@ class LineChartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_line_chart)
 
-
         initView()
     }
 
@@ -23,5 +22,6 @@ class LineChartActivity : AppCompatActivity() {
 
         fsView.setNewData(data)
         fsView.resetCurrentMode("down")
+
     }
 }

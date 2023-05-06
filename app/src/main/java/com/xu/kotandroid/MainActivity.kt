@@ -78,6 +78,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             "toText" -> openActivity<TextActivity>()
             "toAop" -> openActivity<AopActivity>()
             "toTbs" -> openActivity<TbsActivity>()
+            "multi" -> openActivity<MultipleTypeActivity>()
             else -> {}
         }
     }
@@ -101,6 +102,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             TextModel("toText"),
             TextModel("toAop"),
             TextModel("toTbs"),
+            TextModel("multi"),
         )
     }
 
