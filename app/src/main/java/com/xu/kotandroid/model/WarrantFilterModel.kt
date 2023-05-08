@@ -10,6 +10,7 @@ import com.xu.kotandroid.R
  * Description：
  */
 data class WarrantFilterModel(
+    val parent: WarrantFilterWithFlowModel,
     val code: String = "",
     val text: String,
     var isActive: Boolean = false,
@@ -21,20 +22,19 @@ data class WarrantFilterWithFlowModel(
     val text: String,
     var hasMore: Boolean = false,
     val canMultiSelected: Boolean = true,
-) : ItemExpand, BaseObservable() {
+) : ItemParent, BaseObservable() {
 
 
     //    /** 接口数据里面的子列表使用此字段接收(请注意避免gson等框架解析kotlin会覆盖字段默认值问题) */
     var jsonSublist: List<WarrantFilterModel> = emptyList()
 
     //
-    override var itemExpand: Boolean = true
+    override var itemExpand: Boolean = false
         set(value) {
             field = value
             notifyChange()
         }
-    override var itemGroupPosition: Int = 0
-    override var itemSublist: List<Any?>?
+    override var itemSublist: List<Any?>
         get() = jsonSublist
         set(value) {
             jsonSublist = value as List<WarrantFilterModel> // 注意类型转换异常

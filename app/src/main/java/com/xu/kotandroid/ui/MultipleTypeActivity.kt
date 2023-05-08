@@ -16,6 +16,7 @@ import com.drake.brv.utils.setup
 import com.xu.kotandroid.R
 import com.xu.kotandroid.base.BaseActivity
 import com.xu.kotandroid.databinding.ActivityMultipleTypeBinding
+import com.xu.kotandroid.model.ItemParent
 import com.xu.kotandroid.model.WarrantFilterModel
 import com.xu.kotandroid.model.WarrantFilterWithFlowModel
 
@@ -54,16 +55,10 @@ class MultipleTypeActivity :
                 filterModel.isActive = !filterModel.isActive
                 notifyItemChanged(bindingAdapterPosition)
 
-                val parentPosition = findParentPosition()
-                if (parentPosition == -1) {
-                    return@onClick
-                }
-                val parent = getModel<WarrantFilterWithFlowModel>(parentPosition)
+                val parent = filterModel.parent
 
-                Log.e(
-                    "here",
-                    "parentPosition:$parentPosition ${parent.canMultiSelected} ${parent.jsonSublist}"
-                )
+                val parentPosition = findParentPosition(true)
+
                 if (!parent.canMultiSelected && filterModel.isActive) {
                     parent.jsonSublist.forEachIndexed { index, warrantFilterModel ->
 
@@ -81,13 +76,17 @@ class MultipleTypeActivity :
                     return@onFastClick
                 }
                 if (titleModel.itemExpand) {
-                    collapsedWithKeep(6)
+                    collapseWithKeep(6)
                 } else {
                     expandMore(6)
                 }
             }
         }
+
+        // 去掉动画，防止闪烁
+        binding.rv.itemAnimator = null
     }
+
 
     override fun initData() {
 
@@ -99,123 +98,72 @@ class MultipleTypeActivity :
         val list = mutableListOf<Any?>()
         for (i in 0..10) {
 
-            list.add(WarrantFilterWithFlowModel("$i", "$i", hasMore = i > 5, i % 2 == 0).apply {
+            list.add(WarrantFilterWithFlowModel("$i", "$i", hasMore = i > 6, i % 2 == 0).apply {
 
-                jsonSublist = mutableListOf<WarrantFilterModel>().apply {
+                jsonSublist = mutableListOf<WarrantFilterModel>().also {
                     for (j in 0..i) {
-                        add(WarrantFilterModel("$i", "${i + j}", false, j > 5))
+                        it.add(WarrantFilterModel(this, "$i", "${i + j}", false, j > 5))
                     }
                 }
             })
         }
-        return list
-    }
-}
 
+        val newList = mutableListOf<Any>()
 
-@SuppressLint("NotifyDataSetChanged")
-fun BindingAdapter.BindingViewHolder.collapsedWithKeep(keepSize: Int): Int {
-    val itemExpand = getModelOrNull<ItemExpand>() ?: return 0
-    if (!itemExpand.itemExpand) return 0
-
-    val position = if (bindingAdapterPosition == -1) layoutPosition else bindingAdapterPosition
-
-    val itemSublist = itemExpand.itemSublist
-    itemExpand.itemExpand = false
-
-    return if (itemSublist.isNullOrEmpty()) {
-        0
-    } else {
-        val sublistFlat = itemSublist.toMutableList()
-
-//        val from = position + 1
-//        (adapter.models as MutableList).subList(
-//            from + keepSize,
-//            from + sublistFlat.size
-//        ).clear()
-
-
-        sublistFlat.forEachIndexed { index, warrantFilterModel ->
-            if (index > keepSize) {
-                if (warrantFilterModel is WarrantFilterModel) {
-                    warrantFilterModel.isActive = false
-                }
+        list.forEach {
+            if (it is WarrantFilterWithFlowModel) {
+                newList.add(it)
+                newList.addAll(it.jsonSublist)
             }
         }
-
-
-
-        adapter.notifyDataSetChanged()
-        sublistFlat.size - keepSize
+        return newList
     }
 }
 
-@SuppressLint("NotifyDataSetChanged")
-fun collapsedKeep(
-    keepSize: Int,
-    position: Int,
-    itemExpand: ItemExpand,
-    adapter: BindingAdapter
-): Int {
-    if (!itemExpand.itemExpand) return 0
-    val itemSublist = itemExpand.itemSublist
-    itemExpand.itemExpand = false
-
-    return if (itemSublist.isNullOrEmpty()) {
-        0
-    } else {
-        val sublistFlat = itemSublist.toMutableList()
-
-        val from = position + 1
-        (adapter.models as MutableList).subList(
-            from + keepSize,
-            from + sublistFlat.size
-        ).clear()
-        adapter.notifyDataSetChanged()
-        sublistFlat.size - keepSize
-    }
-}
-
-
-@SuppressLint("NotifyDataSetChanged")
-fun BindingAdapter.BindingViewHolder.expandMore(keepSize: Int): Int {
-    val itemExpand = getModelOrNull<ItemExpand>() ?: return 0
-    if (itemExpand.itemExpand) return 0
-
-    val position = if (bindingAdapterPosition == -1) layoutPosition else bindingAdapterPosition
-    val itemSublist = itemExpand.itemSublist
-    itemExpand.itemExpand = true
-
-    return if (itemSublist.isNullOrEmpty()) {
-        0
-    } else {
-        val sublistFlat = itemSublist.toMutableList().subList(keepSize, itemSublist.size)
-
-//        (adapter.models as MutableList).addAll(position + 1 + keepSize, sublistFlat)
-
-        sublistFlat.forEachIndexed { index, warrantFilterModel ->
-            if (index > keepSize) {
-                if (warrantFilterModel is WarrantFilterModel) {
-                    warrantFilterModel.isActive = true
-                }
-            }
+fun BindingAdapter.BindingViewHolder.collapseWithKeep(keepSize: Int) {
+    val titleModel = getModelOrNull<ItemParent>() ?: return
+    titleModel.itemExpand = false
+    titleModel.itemSublist.forEachIndexed { index, warrantFilterModel ->
+        if (index >= keepSize) {
+            if (warrantFilterModel is WarrantFilterModel)
+                warrantFilterModel.willGone = true
         }
+    }
 
-
-        adapter.notifyDataSetChanged()
-
-        sublistFlat.size
+    val childSize = titleModel.itemSublist.size
+    if (childSize > keepSize) {
+        adapter.notifyItemRangeChanged(
+            bindingAdapterPosition + keepSize + 1,
+            childSize - keepSize
+        )
     }
 }
 
 
-@SuppressLint("NotifyDataSetChanged")
+fun BindingAdapter.BindingViewHolder.expandMore(keepSize: Int) {
+    val titleModel = getModelOrNull<ItemParent>() ?: return
+    titleModel.itemExpand = true
+    titleModel.itemSublist.forEachIndexed { index, warrantFilterModel ->
+        if (index >= keepSize) {
+            if (warrantFilterModel is WarrantFilterModel)
+                warrantFilterModel.willGone = false
+        }
+    }
+    adapter.notifyItemRangeChanged(
+        bindingAdapterPosition + keepSize + 1,
+        titleModel.itemSublist.size - keepSize
+    )
+}
+
+
 fun BindingAdapter.BindingViewHolder.findParentPosition(own: Boolean): Int {
 
-    for (index in layoutPosition - 1 downTo 0) {
-        val item = adapter.models?.getOrNull(index) ?: break
-        if (item is ItemExpand && item.itemSublist?.contains(_data) == true) {
-            return index
+    if (own) {
+        for (index in layoutPosition - 1 downTo 0) {
+            val item = adapter.models?.getOrNull(index) ?: break
+            if (item is WarrantFilterWithFlowModel && item.itemSublist.contains(_data)) {
+                return index
+            }
         }
     }
     return -1
