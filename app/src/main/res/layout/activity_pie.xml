@@ -12,12 +12,12 @@
         android:layout_height="match_parent"
         tools:context=".ui.chart.PieActivity">
 
-        <com.xu.kotandroid.view.PieChartView
+        <com.xu.kotandroid.view.PieChartView2
             android:id="@+id/pie"
             android:layout_width="0pt"
             android:layout_height="250pt"
             android:background="#ccc"
-            app:circleRadius="80pt"
+            app:circleRadius="60pt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

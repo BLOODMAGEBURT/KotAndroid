@@ -1,11 +1,13 @@
 package com.xu.kotandroid.view
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import com.blankj.utilcode.util.AdaptScreenUtils
 import com.xu.kotandroid.R
 import kotlin.math.abs
@@ -18,10 +20,21 @@ import kotlin.math.sin
  *
  * Created By: Seal.Wu
  */
-open class PieChartView : View {
+open class PieChartView2 : View {
+
+    private var anim: ValueAnimator? = null
+    private val animDuration = 600L
+    private var animValue = 0f
+
     private var mTextPaint: TextPaint? = null
     private val mTextWidth = 0f
     private var mTextHeight = 0f
+
+    private val innerPaint = Paint()
+    private val innerSubPaint = Paint()
+
+    private val space = 2
+
 
     /**
      * 饼图半径
@@ -58,11 +71,11 @@ open class PieChartView : View {
 
 
     private val innerTextSize by lazy {
-        AdaptScreenUtils.pt2Px(16f).toFloat()
+        AdaptScreenUtils.pt2Px(12f).toFloat()
     }
 
     private val innerSubTextSize by lazy {
-        AdaptScreenUtils.pt2Px(12f).toFloat()
+        AdaptScreenUtils.pt2Px(18f).toFloat()
     }
 
 
@@ -102,7 +115,36 @@ open class PieChartView : View {
         // Update TextPaint and text measurements from attributes
         invalidateTextPaintAndMeasurements()
 
+        initAnim()
+
+        innerPaint.apply {
+            style = Paint.Style.FILL
+            textSize = innerTextSize
+            color = Color.CYAN
+        }
+
+        innerSubPaint.apply {
+            style = Paint.Style.FILL
+            textSize = innerSubTextSize
+            color = Color.RED
+        }
+
     }
+
+    private fun initAnim() {
+        anim = ValueAnimator.ofFloat(0f, 1f).apply {
+            duration = animDuration
+            interpolator = AccelerateDecelerateInterpolator()
+//            repeatCount = ValueAnimator.INFINITE
+
+            addUpdateListener {
+                animValue = (it.animatedValue as Float)
+                invalidate()
+            }
+            start()
+        }
+    }
+
 
     private fun invalidateTextPaintAndMeasurements() {
         mTextPaint!!.textSize = TypedValue.applyDimension(
@@ -139,21 +181,32 @@ open class PieChartView : View {
         if (useInnerCircle) {
             drawInnerCircle(canvas)
             drawInnerText(canvas)
-
         }
     }
 
 
     private fun drawAllSectors(canvas: Canvas) {
         var sum = 0f
+
+        val onlyOne = pieceDataHolders.size == 1
+
         for (pieceDataHolder in pieceDataHolders) {
             sum += pieceDataHolder.value
         }
         var sum2 = 0f
+
+        val firstSweepAngel = pieceDataHolders.first().value / sum * 360
         for (pieceDataHolder in pieceDataHolders) {
-            val startAngel = sum2 / sum * 360
+
+            val startAngel = (sum2 / sum * 360) + (90 - firstSweepAngel / 2) + (space/2)
             sum2 += pieceDataHolder.value
-            val sweepAngel = pieceDataHolder.value / sum * 360
+
+            val sweepAngel = if (onlyOne) {
+                (pieceDataHolder.value / sum * 360) * animValue
+            } else {
+                (pieceDataHolder.value / sum * 360 - space) * animValue
+            }
+
             drawSector(canvas, pieceDataHolder.color, startAngel, sweepAngel)
 //            drawMarkerLineAndText(
 //                canvas, pieceDataHolder.color, startAngel + sweepAngel / 2, pieceDataHolder.marker
@@ -283,28 +336,18 @@ open class PieChartView : View {
     private fun drawInnerText(canvas: Canvas) {
         val xCenter = (width / 2).toFloat()
         val yCenter = (height / 2).toFloat()
-        val paint = Paint().apply {
-            style = Paint.Style.FILL
-            textSize = innerTextSize
-            color = Color.CYAN
-        }
 
-        val subPaint = Paint().apply {
-            style = Paint.Style.FILL
-            textSize = innerSubTextSize
-            color = Color.RED
-        }
         /**
          * 转移之前保存canvas
          */
         canvas.save()
         canvas.translate(xCenter, yCenter)
 
-        canvas.drawLine(0f, 0f, 100f, 0f, paint)
-        canvas.drawLine(0f, 0f, 0f, 100f, paint)
+        canvas.drawLine(0f, 0f, 100f, 0f, innerPaint)
+        canvas.drawLine(0f, 0f, 0f, 100f, innerPaint)
 
-        val textWidth = paint.measureText("总流入")
-        val subTextWidth = subPaint.measureText("123.90")
+        val textWidth = innerPaint.measureText("总流入")
+        val subTextWidth = innerSubPaint.measureText("123.90")
 
 
         /**
@@ -313,12 +356,12 @@ open class PieChartView : View {
          * val baselineY = (paint.descent() -paint.ascent()) /2 -paint.descent()
          * 可推导出下面的公式
          */
-        val baselineY = abs(paint.ascent() + paint.descent()) / 2
+        val baselineY = abs(innerPaint.ascent() + innerPaint.descent()) / 2
 
 
-        canvas.drawText("总流入", -textWidth / 2, -paint.descent(), paint)
+        canvas.drawText("总流入", -textWidth / 2, -innerPaint.descent(), innerPaint)
 
-        canvas.drawText("123.90", -subTextWidth / 2, abs(subPaint.ascent()), subPaint)
+        canvas.drawText("123.90", -subTextWidth / 2, abs(innerSubPaint.ascent()), innerSubPaint)
 
 
         /**
@@ -344,4 +387,10 @@ open class PieChartView : View {
          */
         val marker: String
     )
+
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        anim?.cancel()
+    }
 }
