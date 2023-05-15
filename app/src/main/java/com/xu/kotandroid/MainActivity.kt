@@ -79,6 +79,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             "toAop" -> openActivity<AopActivity>()
             "toTbs" -> openActivity<TbsActivity>()
             "multi" -> openActivity<MultipleTypeActivity>()
+            "file" -> openActivity<FileChooseActivity>()
             else -> {}
         }
     }
@@ -103,6 +104,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             TextModel("toAop"),
             TextModel("toTbs"),
             TextModel("multi"),
+            TextModel("file"),
         )
     }
 
