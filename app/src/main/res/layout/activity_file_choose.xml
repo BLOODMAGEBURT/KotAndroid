@@ -29,10 +29,45 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50pt"
-            android:text="选择文件"
+            android:text="文件uri"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_choose" />
+
+
+        <TextView
+            android:id="@+id/choosePic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50pt"
+            android:padding="16pt"
+            android:text="选择Pic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_file_path" />
+
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="200pt"
+            android:layout_height="200pt"
+            android:layout_marginTop="20pt"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/choosePic" />
+
+
+        <TextView
+            android:id="@+id/chooseMultiPic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20pt"
+            android:padding="16pt"
+            android:text="选择多个Pic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
