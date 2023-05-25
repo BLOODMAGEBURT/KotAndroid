@@ -28,6 +28,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotAndroid">
         <activity
+            android:name=".ui.TTTActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.AnimatedUiActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.FileChooseActivity"
             android:exported="false" />
         <activity

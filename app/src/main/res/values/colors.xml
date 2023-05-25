@@ -22,4 +22,6 @@
     <color name="btn_text_white">#FFFFFFFF</color>
     <color name="divider27">#272727</color>
     <color name="color33">#333333</color>
+
+    <color name="snowflake_color">#CBE5FB</color>
 </resources>

@@ -80,6 +80,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             "toTbs" -> openActivity<TbsActivity>()
             "multi" -> openActivity<MultipleTypeActivity>()
             "file" -> openActivity<FileChooseActivity>()
+            "AnimatedUI" -> openActivity<AnimatedUiActivity>()
             else -> {}
         }
     }
@@ -105,6 +106,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             TextModel("toTbs"),
             TextModel("multi"),
             TextModel("file"),
+            TextModel("AnimatedUI"),
         )
     }
 
