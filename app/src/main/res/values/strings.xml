@@ -15,4 +15,18 @@
     <string name="pass">pass</string>
     <string name="roll">roll</string>
     <string name="or">OR</string>
+    <string name="title_activity_survey">SurveyActivity</string>
+
+
+    <!-- question 1-->
+    <string name="in_my_free_time">In my free time I like to …</string>
+    <string name="read">Read</string>
+    <string name="work_out">Work out</string>
+    <string name="draw">Draw</string>
+    <string name="play_games">Play video games Play video games Play video games</string>
+    <string name="dance">Dance</string>
+    <string name="watch_movies">Watch movies</string>
+    <string name="hello">HELLO WORLD</string>
+    <string name="hello_multi">HELLO WORLD     HELLO WORLD   HELLO WORLD</string>
+    <string name="title_activity_collapsed_toolbar">CollapsedToolbarActivity</string>
 </resources>

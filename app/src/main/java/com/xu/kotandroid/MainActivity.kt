@@ -7,6 +7,8 @@ import com.blankj.utilcode.util.DeviceUtils.getModel
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
 import com.xu.kotandroid.base.BaseActivity
+import com.xu.kotandroid.compose.CollapsedToolbarActivity
+import com.xu.kotandroid.compose.SurveyActivity
 import com.xu.kotandroid.databinding.ActivityMainBinding
 import com.xu.kotandroid.ui.*
 import com.xu.kotandroid.ui.chart.AAActivity
@@ -81,6 +83,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             "multi" -> openActivity<MultipleTypeActivity>()
             "file" -> openActivity<FileChooseActivity>()
             "AnimatedUI" -> openActivity<AnimatedUiActivity>()
+            "Porter" -> openActivity<PorterDuffActivity>()
+            "Survey" -> openActivity<SurveyActivity>()
+            "Toolbar" -> openActivity<CollapsedToolbarActivity>()
             else -> {}
         }
     }
@@ -107,6 +112,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             TextModel("multi"),
             TextModel("file"),
             TextModel("AnimatedUI"),
+            TextModel("Porter"),
+            TextModel("Survey"),
+            TextModel("Toolbar"),
         )
     }
 

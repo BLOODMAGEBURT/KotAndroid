@@ -14,5 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
         android:text="@{m.text}"
+        android:typeface="monospace"
         android:textAllCaps="false" />
 </layout>
