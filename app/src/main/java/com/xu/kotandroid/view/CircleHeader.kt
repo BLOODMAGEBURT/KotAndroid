@@ -13,9 +13,30 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
-import androidx.core.content.ContextCompat.getSystemService
-import com.blankj.utilcode.util.VibrateUtils
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.unit.dp
 import com.scwang.smart.refresh.layout.api.RefreshHeader
 import com.scwang.smart.refresh.layout.api.RefreshKernel
 import com.scwang.smart.refresh.layout.api.RefreshLayout
@@ -30,7 +51,7 @@ import com.xu.kotandroid.databinding.HeaderBioBinding
  * Date：2023/5/25 15:09
  * Description：
  */
-class BioHeader @JvmOverloads constructor(
+class CircleHeader @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -43,6 +64,9 @@ class BioHeader @JvmOverloads constructor(
 
     private var coffeeDrawable: CoffeeDrawable? = null
 
+    private val refreshState = mutableStateOf(RefreshState.None)
+
+    private val progress = mutableFloatStateOf(0f)
 
     init {
         binding = HeaderBioBinding.inflate(LayoutInflater.from(context), this, false)
@@ -53,7 +77,61 @@ class BioHeader @JvmOverloads constructor(
             }
         }
 
-        addView(binding.root)
+//        addView(binding.root)
+        addView(ComposeView(context).apply {
+            setContent {
+                KotAndroidTheme {
+
+                    val realRotateZ by remember{
+                        derivedStateOf { progress.floatValue * 180f }
+                    }
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(64.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        when (refreshState.value) {
+                            RefreshState.None, RefreshState.PullDownToRefresh, RefreshState.ReleaseToRefresh -> {
+                                CircleRing(
+                                    Modifier
+                                        .size(18.dp)
+                                        .graphicsLayer {
+                                            rotationZ = realRotateZ
+                                        })
+                            }
+
+                            RefreshState.Refreshing, RefreshState.RefreshFinish -> {
+                                CircularProgressIndicator(
+                                    modifier = Modifier.size(18.dp),
+                                    color = Color.White,
+                                    trackColor = Color.White.copy(0.25f),
+                                    strokeWidth = 2.dp
+                                )
+                            }
+
+                            else -> {}
+                        }
+
+                    }
+
+                }
+            }
+        })
+    }
+
+    @Composable
+    fun CircleRing(modifier: Modifier) {
+        Canvas(modifier = modifier) {
+            drawCircle(color = Color.White.copy(0.25f), style = Stroke(width = 2.dp.toPx()))
+            drawArc(
+                color = Color.White,
+                30f,
+                60f,
+                useCenter = false,
+                style = Stroke(width = 2.dp.toPx())
+            )
+        }
     }
 
     @SuppressLint("RestrictedApi")
@@ -63,6 +141,7 @@ class BioHeader @JvmOverloads constructor(
         newState: RefreshState
     ) {
         currentState = newState
+        refreshState.value = newState
         when (newState) {
             RefreshState.None, RefreshState.PullDownToRefresh -> {
                 binding.tv.text = "下拉开始刷新"
@@ -83,6 +162,7 @@ class BioHeader @JvmOverloads constructor(
 //                }
                 coffeeDrawable?.start()
                 binding.tv.text = "正在刷新"
+
             }
 
             RefreshState.ReleaseToRefresh -> {
@@ -145,6 +225,9 @@ class BioHeader @JvmOverloads constructor(
 //            }
 
             coffeeDrawable?.progress = realPercent
+
+            progress.floatValue = realPercent
+
         }
 
         Log.e("here", "onMoving $isDragging $percent $offset $height $maxDragHeight")
@@ -176,6 +259,8 @@ class BioHeader @JvmOverloads constructor(
 //        }
 
         coffeeDrawable?.finish()
+
+//        progress.floatValue = 0f
 
         return 500
     }

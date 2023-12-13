@@ -1,16 +1,21 @@
 package com.xu.kotandroid.compose
 
 import android.os.Bundle
+import android.text.style.TtsSpan.TimeBuilder
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
@@ -23,6 +28,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,6 +45,7 @@ import me.onebone.toolbar.CollapsingToolbarScaffold
 import me.onebone.toolbar.CollapsingToolbarScope
 import me.onebone.toolbar.ScrollStrategy
 import me.onebone.toolbar.rememberCollapsingToolbarScaffoldState
+import org.w3c.dom.Text
 
 class CollapsedToolbarActivity : ComponentActivity() {
     @OptIn(ExperimentalFoundationApi::class)
@@ -53,7 +60,7 @@ class CollapsedToolbarActivity : ComponentActivity() {
                 ) {
 
                     val state = rememberCollapsingToolbarScaffoldState()
-                    val pagerState = rememberPagerState(0)
+                    val pagerState = rememberPagerState { 3 }
 
                     CollapsingToolbarScaffold(
                         modifier = Modifier,
@@ -64,7 +71,7 @@ class CollapsedToolbarActivity : ComponentActivity() {
                         }
                     ) {
 
-                        HorizontalPager(3, state = pagerState) {
+                        HorizontalPager(state = pagerState) {
 
                             when (it) {
                                 0 -> {
@@ -72,7 +79,7 @@ class CollapsedToolbarActivity : ComponentActivity() {
                                 }
 
                                 1 -> {
-                                    BookList(20, "liu xiang")
+                                    AuthorList(20, "liu xiang")
                                 }
 
                                 2 -> {
@@ -89,6 +96,7 @@ class CollapsedToolbarActivity : ComponentActivity() {
         }
     }
 
+
     @Composable
     private fun BookList(count: Int, author: String) {
 
@@ -96,6 +104,24 @@ class CollapsedToolbarActivity : ComponentActivity() {
 
             items(count) {
                 BookItem(author)
+            }
+
+        }
+
+    }
+
+    @Composable
+    private fun AuthorList(count: Int, author: String) {
+
+        LaunchedEffect(key1 = author) {
+            Log.e("here", "bookList author: $author")
+
+        }
+
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+
+            items(count) {
+                AuthorItem(author)
             }
 
         }
@@ -113,9 +139,26 @@ class CollapsedToolbarActivity : ComponentActivity() {
         )
     }
 
+    @Composable
+    fun AuthorItem(author: String) {
+        Row {
+            Text(
+                text = author,
+                modifier = Modifier
+                    .padding(vertical = 12.dp),
+                textAlign = TextAlign.Center
+            )
+            Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
+                repeat(15) {
+                    Text(author)
+                }
+            }
+        }
+    }
+
     @OptIn(ExperimentalFoundationApi::class)
     @Composable
-    private fun CollapsingToolbarScope.ScrollHeader(pagerState: PagerState) {
+    fun CollapsingToolbarScope.ScrollHeader(pagerState: PagerState) {
 
         Box(
             modifier = Modifier

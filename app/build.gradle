@@ -7,12 +7,12 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.xu.kotandroid"
         minSdk 28
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -48,7 +48,7 @@ android {
     }
     namespace 'com.xu.kotandroid'
     composeOptions {
-        kotlinCompilerExtensionVersion '1.4.3'
+        kotlinCompilerExtensionVersion '1.5.0'
     }
     packagingOptions {
         resources {
@@ -89,13 +89,13 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lc_version"
     implementation 'androidx.activity:activity-ktx:1.7.0'
     implementation 'androidx.activity:activity-compose:1.5.1'
-    implementation platform('androidx.compose:compose-bom:2022.10.00')
+    implementation platform('androidx.compose:compose-bom:2023.10.01')
     implementation 'androidx.compose.ui:ui'
     implementation 'androidx.compose.ui:ui-graphics'
     implementation 'androidx.compose.ui:ui-tooling-preview'
     implementation 'androidx.compose.material3:material3'
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose"
-    implementation platform('androidx.compose:compose-bom:2023.03.00')
+    implementation platform('androidx.compose:compose-bom:2023.10.01')
     // have included by nav-fragment-ktx
 //    implementation 'androidx.fragment:fragment-ktx:1.5.5'
     testImplementation 'junit:junit:4.+'
