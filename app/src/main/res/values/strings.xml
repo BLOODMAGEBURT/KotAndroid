@@ -29,4 +29,5 @@
     <string name="hello">HELLO WORLD</string>
     <string name="hello_multi">HELLO WORLD     HELLO WORLD   HELLO WORLD</string>
     <string name="title_activity_collapsed_toolbar">CollapsedToolbarActivity</string>
+    <string name="title_activity_pager">PagerActivity</string>
 </resources>

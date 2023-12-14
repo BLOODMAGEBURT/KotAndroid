@@ -114,18 +114,18 @@ fun SurveyHeader(title: String, desc: String, modifier: Modifier = Modifier) {
                     .weight(1f)
             ) {
                 Text(
-                    text = "Hello World ",
+                    text = "Hello World",
                     style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier
                         .background(color = MaterialTheme.colorScheme.secondary)
                 )
                 Text(
-                    text = "Hello World ",
+                    text = "Hello World",
                     style = MaterialTheme.typography.bodySmall.copy(
                         platformStyle = PlatformTextStyle(
                             includeFontPadding = false
                         ),
-                        lineHeight = 20.sp,
+//                        lineHeight = 20.sp,
                         lineHeightStyle = LineHeightStyle(
                             alignment = LineHeightStyle.Alignment.Center,
                             trim = LineHeightStyle.Trim.None
@@ -140,7 +140,7 @@ fun SurveyHeader(title: String, desc: String, modifier: Modifier = Modifier) {
                 text = "Hello World",
                 style = MaterialTheme.typography.bodySmall.copy(
                     platformStyle = PlatformTextStyle(
-                        includeFontPadding = true
+                        includeFontPadding = false
                     )
                 ),
                 modifier = Modifier

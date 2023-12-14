@@ -86,6 +86,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             "Porter" -> openActivity<PorterDuffActivity>()
             "Survey" -> openActivity<SurveyActivity>()
             "Toolbar" -> openActivity<CollapsedToolbarActivity>()
+            "Pager" -> openActivity<PagerActivity>()
             else -> {}
         }
     }
@@ -115,6 +116,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             TextModel("Porter"),
             TextModel("Survey"),
             TextModel("Toolbar"),
+            TextModel("Pager"),
         )
     }
 

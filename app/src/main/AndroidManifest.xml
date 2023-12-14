@@ -28,6 +28,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotAndroid">
         <activity
+            android:name=".ui.PagerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_pager"
+            android:theme="@style/Theme.KotAndroid" />
+        <activity
             android:name=".compose.CollapsedToolbarActivity"
             android:exported="false"
             android:label="@string/title_activity_collapsed_toolbar"
